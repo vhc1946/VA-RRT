@@ -1,0 +1,21 @@
+{
+  "name": "trackers",
+  "version": "1.0.0",
+  "description": "Vogel App Template",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "app": "electron app.js",
+    "package-app": "electron-packager ./ trackers --overwrite --asar=true --platform=win32 --arch=ia32 --icon=./repo/assets/icons/RRQuoter.ico --prune=true --out=../../../Support/Releases --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"WO Email\""
+  },
+  "author": "cmv",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^18.2.0",
+    "electron-packager": "^15.5.1",
+    "jquery": "^3.6.0",
+    "request": "^2.88.2",
+    "xlsx": "^0.18.5",
+    "xlsx-populate": "^1.21.0"
+  }
+}

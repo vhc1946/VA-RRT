@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            require('../bin/repo/gui/js/tools/vg-partials.js').writePart(__dirname + '/parts/vg-heads.txt',
+                                                              document.head);
+        </script>
+        <link rel="stylesheet" href="../bin/gui/styles/tracker-styles.css"/>
+        <link rel="stylesheet" href="../bin/repo/gui/styles/modules/vg-floatviews.css"/>
+    </head>
+    <body>
+      <!--VG NOTELIST / TR NOTES PARTIAL-->
+      <script>
+          require('../bin/repo/gui/js/tools/vg-partials.js').writePart(__dirname + '/parts/vg-notelist.txt',
+                                                            document.body, 'vg-toast-tr', true);
+      </script>
+        <div id="preview-center" class="vg-float-frame">
+            <div class="vg-float-view" title="">
+            </div>
+            <img id="vg-float-frame-close" src="../bin/repo/assets/icons/cross.png"/>
+        </div>
+
+
+        <div id="analytics-view-cont" class="viewcontrol-cont">
+            <div class="viewcontrol-menu">
+                <div></div>
+            </div>
+            <div id="analytics-area" class="viewcontrol-port"></div>
+        </div>
+    </body>
+    <script src='../bin/gui/analytics.js'>
+    </script>
+</html>

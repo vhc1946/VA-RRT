@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            require('../bin/repo/gui/js/tools/vg-partials.js').writePart(__dirname + '/parts/vg-heads.txt',
+                                                              document.head);
+        </script>
+        <link rel="stylesheet" href="../bin/gui/styles/tracker-styles.css"/>
+    </head>
+    <body>
+        <div id="commish-view-cont" class="viewcontrol-cont">
+            <div class="viewcontrol-menu">
+                <div></div>
+            </div>
+            <div id="commission-area" class="viewcontrol-port"></div>
+        </div>
+
+
+        <div id="commish-table-temp">  
+            <table class="commish-table">
+                <tr class="commish-table-headers">
+                    <td>VHC Commission</td>
+                    <td>Base</td>
+                    <td>Mid</td>
+                    <td>Prem</td>
+                </tr>
+                <tr>
+                    <td>Sales Amount</td>
+                    <td class="base-total">Base</td>
+                    <td class="mid-total">Mid</td>
+                    <td class="prem-total">Prem</td>
+                </tr>
+                <tr>
+                    <td>Less: Special Offers</td>
+                    <td class="base-spec">Base</td>
+                    <td class="mid-spec">Mid</td>
+                    <td class="prem-spec">Prem</td>
+                </tr>
+                <tr>
+                    <td>Sales Subtotal</td>
+                    <td class="base-subtotal">Base</td>
+                    <td class="mid-subtotal">Mid</td>
+                    <td class="prem-subtotal">Prem</td>
+                </tr>
+                <tr>
+                    <td>Calc Comm Rate</td>
+                    <td class="base-rate">Base</td>
+                    <td class="mid-rate">Mid</td>
+                    <td class="prem-rate">Prem</td>
+                </tr>
+                <tr>
+                    <td>Earned Comm</td>
+                    <td class="base-earned">Base</td>
+                    <td class="mid-earned">Mid</td>
+                    <td class="prem-earned">Prem</td>
+                </tr>
+                <tr>
+                    <td>Comm Subtotal</td>
+                    <td></td>
+                    <td></td>
+                    <td class="comm-stotal">All</td>
+                </tr>
+                <tr>
+                    <td>Direct Ref Prem</td>
+                    <td class="dr-sales">Base</td>
+                    <td class="dr-rate">Mid</td>
+                    <td class="dr-comm">Prem</td>
+                </tr>
+                <tr>
+                    <td>Special Offers</td>
+                    <td class="spec-sales">Base</td>
+                    <td class="spec-rate">Mid</td>
+                    <td class="spec-comm">Prem</td>
+                </tr>
+                <tr>
+                    <td>Book Price %</td>
+                    <td class="bp-percent">Base</td>
+                    <td class="bp-rate">Mid</td>
+                    <td class="bp-comm">Prem</td>
+                </tr>
+                <tr>
+                    <td>Commissions Earned</td>
+                    <td></td>
+                    <td></td>
+                    <td class="comm-total">Prem</td>
+                </tr>
+            </table>
+            <table class="commish-table">
+                <tr class="commish-table-headers">
+                    <td>BEE Commission</td>
+                    <td>Revenue</td>
+                    <td>Rate</td>
+                    <td>Commission</td>
+                </tr>
+                <tr>
+                    <td>Earned</td>
+                    <td class="bee-rev">Revenue</td>
+                    <td class="bee-rate">Rate</td>
+                    <td class="bee-commish">Commission</td>
+                </tr>
+            </table>
+            <table class="commish-table">
+                <tr class="commish-table-headers">
+                    <td>Total Commission</td>
+                    <td></td>
+                    <td></td>
+                    <td class="total-commish">Commission</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <script src='../bin/gui/commission.js'>
+        require('../bin/repo/gui/js/tools/vg-partials.js').writePart(__dirname + '/parts/vg-notelist.txt',document.body, 'vg-toast-tr', true);  // VG NOTELIST / TR NOTES PARTIAL
+    </script>
+</html>

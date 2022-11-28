@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            require('../bin/repo/gui/js/tools/vg-partials.js').writePart(__dirname + '/parts/vg-heads.txt',
+                                                              document.head);
+        </script>
+        <link rel="stylesheet" href="../bin/gui/styles/tracker-styles.css"/>
+        <link rel="stylesheet" href="../bin/repo/gui/styles/modules/vg-floatviews.css"/>
+    </head>
+    <body>
+      <!--VG NOTELIST / TR NOTES PARTIAL-->
+      <script>
+          require('../bin/repo/gui/js/tools/vg-partials.js').writePart(__dirname + '/parts/vg-notelist.txt',
+                                                            document.body, 'vg-toast-tr', true);
+      </script>
+        <div id="preview-center" class="vg-float-frame">
+            <div class="vg-float-view" title="Lead Overview">
+                <div>
+                    <div class="preview-header">LEAD OVERVIEW</div>
+                    <div class="preview-area-body">
+                        <div class="preview-area-client">
+                            <label>Client Name</label><input id="preview-value-client">
+                            <label>Client Street</label><input id="preview-value-street">
+                            <label>Client City</label><input id="preview-value-city">
+                            <label>Client Zip</label><input id="preview-value-zip">
+                            <label>Contact Phone</label><input id="preview-value-phone1">
+                            <label>Contact Email</label><input id="preview-value-email">
+                        </div>
+                        <div class="preview-area-appt">
+                            <label>Lead Date</label><input id="preview-value-date">
+                            <label>Time Ran</label><input id="preview-value-time">
+                            <label>Company</label><input id="preview-value-comp">                        
+                            <label>Lead Source</label><input id="preview-value-source">
+                            <label>Lead Generator</label><input id="preview-value-lead">
+                            <label>Rewards</label><input id="preview-value-rewards">
+                            <label>Preseted Via</label><input id="preview-value-prstvia">
+                            <label>Preseted On</label><input id="preview-value-prstdate">
+                            <label>Book Price Used</label><input id="preview-value-bookprc">
+                        </div>
+                        <div class="preview-area-sale">
+                            <div class="preview-sales-misc">
+                                <label>Financed</label><input id="preview-value-finance">
+                                <label>Sale Type</label><input id="preview-value-saletype">
+                            </div>
+                            <div class="preview-sales-bee">
+                                <label>Windows</label><input id="preview-value-windows">
+                                <label>Doors</label><input id="preview-value-doors">
+                                <label>Glass Block</label><input id="preview-value-gblock">
+                                <label>Insulation</label><input id="preview-value-insul">
+                            </div>
+                            <div class="preview-sales-service">
+                                <label>Repairs</label><input id="preview-value-repair">
+                            </div>
+                            <div class="preview-sales-vhc">
+                                <label>Option 4</label><input id="preview-value-option4">
+                                <label>Option 3</label><input id="preview-value-option3">
+                                <label>Option 2</label><input id="preview-value-option2">
+                                <label>Option 1</label><input id="preview-value-option1">
+                                <label>Boiler</label><input id="preview-value-boiler">
+                                <label>IAQ</label><input id="preview-value-iaq">
+                                <label>Cut-In</label><input id="preview-value-cutin">
+                                <label>Design/Build</label><input id="preview-value-desbuild">
+                            </div>
+                        </div>
+                        <div class="preview-area-buttons">
+                            <div id="preview-value-cons"></div>
+                            <div class="flat-action-button" id="tracker-edit-save">SAVE</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="vg-float-view" title="Analytics">
+                <div>
+                    <div class="preview-header">ANALYTICS</div>
+                    <div id="analytics-view-cont" class="viewcontrol-cont">
+                        <div class="viewcontrol-menu">
+                            <div></div>
+                        </div>
+                        <div id="analytics-area" class="viewcontrol-port"></div>
+                    </div>
+                </div>
+            </div>
+            <img id="vg-float-frame-close" src="../bin/repo/assets/icons/cross.png"/>
+        </div>
+        <div id="report-area-metrics-yearly"></div>
+        <div id="tracker-view-cont" class="viewcontrol-cont">
+            <div class="viewcontrol-menu">
+                <div></div>
+            </div>
+            <div id="tracker-tables" class="viewcontrol-port"></div>
+        </div>
+    </body>
+    <script src='../bin/gui/main.js'>
+    </script>
+</html>
