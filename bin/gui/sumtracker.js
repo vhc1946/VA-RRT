@@ -169,42 +169,6 @@ var GENcommish=(list)=>{
       break;
     }
   }
-  console.log(metrics.commish);
-  
-  if(metrics.close < 30.01){  // calculates commission rates
-    metrics.commish.base.rate = .05;
-    metrics.commish.mid.rate = .05;
-    metrics.commish.prem.rate = .05;
-  }else if(metrics.close < 35){
-    metrics.commish.base.rate = .05;
-    metrics.commish.mid.rate = .05;
-    metrics.commish.prem.rate = .05;
-  }else if(metrics.close < 40){
-    metrics.commish.base.rate = .05;
-    metrics.commish.mid.rate = .06;
-    metrics.commish.prem.rate = .07;
-  }else if(metrics.close < 45){
-    metrics.commish.base.rate = .06;
-    metrics.commish.mid.rate = .07;
-    metrics.commish.prem.rate = .08;
-  }else if(metrics.close < 50){
-    metrics.commish.base.rate = .07;
-    metrics.commish.mid.rate = .08;
-    metrics.commish.prem.rate = .09;
-  }else if(metrics.close < 55){
-    metrics.commish.base.rate = .08;
-    metrics.commish.mid.rate = .09;
-    metrics.commish.prem.rate = .09;
-  }else if(metrics.close < 60){
-    metrics.commish.base.rate = .08;
-    metrics.commish.mid.rate = .09;
-    metrics.commish.prem.rate = .10;
-  }else{
-    metrics.commish.base.rate = .09;
-    metrics.commish.mid.rate = .10;
-    metrics.commish.prem.rate = .11;
-  }
-  console.log(metrics.commish);
 
   for(let key in metrics.commish){
     metrics.commish[key].subtotal = metrics.commish[key].total - metrics.commish[key].spec;

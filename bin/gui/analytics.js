@@ -180,7 +180,7 @@ var CREATEmotable=(comp,user)=>{  // Creates Monthly Summary Analytics table
 ipcRenderer.send('get-user-tlist','Analytic request');
 
 ipcRenderer.on('get-user-tlist', (eve,data)=>{
-  console.log(data.data);
+  console.log('Data list>',data.data);
 
   sumtracker.SETsumtracker(data.data);
   

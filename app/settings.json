@@ -64,15 +64,15 @@
        }, 
       "option2":{ 
         "descr":"Option 2",
-        "paygroup":1
+        "paygroup":2
       }, 
       "option1":{ 
         "descr":"Option 1",
-        "paygroup":1
+        "paygroup":3
       }, 
       "boiler":{ 
         "descr":"Boilers",
-        "paygroup":1
+        "paygroup":2
       }, 
       "cutin":{ 
         "descr":"Cut-In",
@@ -84,19 +84,19 @@
       }, 
       "windows":{ 
         "descr":"Windows",
-        "paygroup":1
+        "paygroup":0
       }, 
       "doors":{ 
         "descr":"Doors",
-        "paygroup":1
+        "paygroup":0
       }, 
       "gblock":{ 
         "descr":"Glass Block",
-        "paygroup":1
+        "paygroup":0
       }, 
       "insul":{ 
         "descr":"Insulation",
-        "paygroup":1
+        "paygroup":0
       },
       "repair":{ 
         "descr":"Repairs",
@@ -106,8 +106,14 @@
     "commishtable":{
       "paygroups":["Other","Base","Mid","Prem"],
       "closerates":[
-        {"rate":30.01,"payouts":[0.05,0.05,0.05,0.05]},
-        {"rate":30.01,"payouts":[0.05,0.05,0.05,0.05]}
+        {"rate":30.01,"payouts":[0.08,0.05,0.05,0.05]},
+        {"rate":35,"payouts":[0.08,0.05,0.05,0.05]},
+        {"rate":40,"payouts":[0.08,0.05,0.06,0.07]},
+        {"rate":45,"payouts":[0.08,0.06,0.07,0.08]},
+        {"rate":50,"payouts":[0.08,0.07,0.08,0.09]},
+        {"rate":55,"payouts":[0.08,0.08,0.09,0.09]},
+        {"rate":60,"payouts":[0.08,0.08,0.09,0.10]},
+        {"rate":100,"payouts":[0.08,0.09,0.10,0.11]}
       ],
       "bookrate":[
         {"rate":0,"payout":0}
