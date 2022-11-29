@@ -21,14 +21,14 @@ var PUTtlist=(tr=[])=>{
 /* Modify Send SENDrequest
   Look in FT for updated SENDrequest
 */
-var GETtlist=()=>{
+var GETtlist=(cons=null)=>{
   return new Promise((res,rej)=>{
     var tpull = {
       collect:'apps',
       store:'SUMTRACKER',
       db:'mtracker',
       method:'query',
-      options:{query:{}}
+      options:{query:{cons:cons?cons:undefined}}
     };
     vapi.SENDrequestapi(tpull,'mart').then(
       result=>{
