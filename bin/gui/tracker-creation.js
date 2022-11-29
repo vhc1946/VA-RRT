@@ -3,6 +3,8 @@ var vgtables = require('../repo/gui/js/modules/vg-tables.js');
 
 var sumtracker = require('./sumtracker.js');
 
+var {GETtlist}= require('..//RRT-requests.js');
+
 var molist = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
 var monum = ['01','02','03','04','05','06','07','08','09','10','11','12'];
 var today = new Date();
@@ -94,12 +96,12 @@ var FILLtab=(tab, user)=>{  // Fills each tab with proper table
     if(tab == 'CO'){
         for(let i=1;i<10;i++){  //loops through last nine years to create CarryOver List
             year = today.getFullYear() - i;
-            list=sumtracker.GENlists(list,user,year);
+            list=sumtracker.GENlists(list,year);
         }
     }else{
         for(let m in molist){
             if(molist[m]==tab){
-                list=sumtracker.GENlists(list,user,today.getFullYear()+'-'+monum[m]+'-');
+                list=sumtracker.GENlists(list,today.getFullYear()+'-'+monum[m]+'-');
             }
         }
     }
@@ -120,7 +122,7 @@ var FILLtab=(tab, user)=>{  // Fills each tab with proper table
 var FILLtop=(user)=>{  // Fills top summary sections
     let list={vhc:[],bee:[],comb:[]};
     let cont = document.getElementById('report-area-metrics-yearly');
-    list = sumtracker.GENlists(list,user);
+    list = sumtracker.GENlists(list);
 
     cont.appendChild(CREATEsumtable(sumtracker.GENmetrics(list.vhc),'Vogel'));
     cont.appendChild(CREATEsumtable(sumtracker.GENmetrics(list.bee),'BEE'));
@@ -128,7 +130,17 @@ var FILLtop=(user)=>{  // Fills top summary sections
 }
 
 
+var SETUPuseryear = (user=null)=>{
+  GETtlist(user).then(
+    data=>{
+      console.log(data.body.result);
+      sumtracker.SETsumtracker(data.body.result);
+      CREATEviews(appuser);
+      FILLtop(appuser)
+    }
+  )
+}
+
 module.exports={
-    CREATEviews,
-    FILLtop
-  }
+  SETUPuseryear
+}

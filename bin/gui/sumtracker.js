@@ -23,12 +23,18 @@ var EDITtracker=()=>{
   floatv.SELECTview(document.getElementById('preview-center'),'Lead Overview');//open lead preview
 }
 
-var GENlists=(list,user,date=null)=>{
+var GENlists=(list,date=null)=>{
+
+  list.vhc = list.vhc.concat(asumtracker.TRIMlist({comp:'VHC', date:date?date:undefined}, date?true:false));
+  list.bee = list.bee.concat(asumtracker.TRIMlist({comp:'BEE', date:date?date:undefined}, date?true:false));
+  list.comb = list.bee.concat(asumtracker.TRIMlist({ date:date?date:undefined}, date?true:false));
+  console.log(list, '-',date)
+  /*
   if(date){
     if(appset.users[user].group == "CONS"){
-      list.vhc = list.vhc.concat(asumtracker.TRIMlist({comp:'VHC',cons:appset.users[user].name, date:date}, true));
-      list.bee = list.bee.concat(asumtracker.TRIMlist({comp:'BEE',cons:appset.users[user].name, date:date}, true));
-      list.comb = list.bee.concat(asumtracker.TRIMlist({cons:appset.users[user].name, date:date}, true));
+      list.vhc = list.vhc.concat(asumtracker.TRIMlist({comp:'VHC', date:date?date:undefined}, true));
+      list.bee = list.bee.concat(asumtracker.TRIMlist({comp:'BEE', date:date?date:undefined}, true));
+      list.comb = list.bee.concat(asumtracker.TRIMlist({date:date}, true));
     }else{
       list.vhc = list.vhc.concat(asumtracker.TRIMlist({comp:'VHC',date:date}, true));
       list.bee = list.bee.concat(asumtracker.TRIMlist({comp:'BEE',date:date}, true));
@@ -45,6 +51,7 @@ var GENlists=(list,user,date=null)=>{
       list.comb = list.bee.concat(asumtracker.list);
     }
   }
+  */
   return list;
 }
 
@@ -133,7 +140,7 @@ var GENcommish=(list)=>{
       break;
     }
   }
-  console.log(metrics.commish);
+  console.log('COMMISH ',metrics.commish);
 
   if(metrics.close < 30.01){  // calculates commission rates
     metrics.commish.base.rate = .05;
@@ -169,7 +176,7 @@ var GENcommish=(list)=>{
     metrics.commish.prem.rate = .11;
   }
   console.log(metrics.commish);
-  
+
   for(let key in metrics.commish){
     metrics.commish[key].subtotal = metrics.commish[key].total - metrics.commish[key].spec;
     metrics.commish[key].earned = Math.trunc(metrics.commish[key].subtotal * metrics.commish[key].rate);

@@ -7,11 +7,8 @@ var {DropNote}=require('../bin/repo/gui/js/modules/vg-poppers.js');
 var {navroutes}=require('../bin/routes.js');
 var {aappuser} = require('../bin/repo/ds/users/vogel-users.js');
 var {usersls}=require('../bin/gui/storage/lstore.js');
-var sumtracker = require('../bin/gui/sumtracker.js');
 var creator = require('../bin/gui/tracker-creation.js');
 var appset = require('../app/settings.json');
-
-var {GETtlist, PUTtlist}= require('../bin/RRT-requests.js');
 
 //  TITLE BAR //////////////////////////////////////////////////////////
 try{
@@ -98,15 +95,12 @@ document.getElementById('tracker-edit-save').addEventListener('click', (ele)=>{
 });
 
 //var maintlist = new ObjList;
-var SETUPuseryear = ()=>{
-  GETtlist().then(
-    data=>{
-      console.log(data.body.result);
-      sumtracker.SETsumtracker(data.body.result);
-      creator.CREATEviews(appuser);
-      creator.FILLtop(appuser)
-    }
-  )
-}
 
-SETUPuseryear();
+/*
+Erik F
+Jeff V
+Grant V
+Ken W
+Jessica V
+*/
+creator.SETUPuseryear('Erik F');
