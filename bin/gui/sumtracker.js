@@ -24,52 +24,45 @@ var EDITtracker=()=>{
 }
 
 var GENlists=(list,date=null)=>{
-
-  list.vhc = list.vhc.concat(asumtracker.TRIMlist({comp:'VHC', date:date?date:undefined}, date?true:false));
-  list.bee = list.bee.concat(asumtracker.TRIMlist({comp:'BEE', date:date?date:undefined}, date?true:false));
-  list.comb = list.bee.concat(asumtracker.TRIMlist({ date:date?date:undefined}, date?true:false));
-  console.log(list, '-',date)
-  /*
-  if(date){
-    if(appset.users[user].group == "CONS"){
-      list.vhc = list.vhc.concat(asumtracker.TRIMlist({comp:'VHC', date:date?date:undefined}, true));
-      list.bee = list.bee.concat(asumtracker.TRIMlist({comp:'BEE', date:date?date:undefined}, true));
-      list.comb = list.bee.concat(asumtracker.TRIMlist({date:date}, true));
-    }else{
-      list.vhc = list.vhc.concat(asumtracker.TRIMlist({comp:'VHC',date:date}, true));
-      list.bee = list.bee.concat(asumtracker.TRIMlist({comp:'BEE',date:date}, true));
-      list.comb = list.bee.concat(asumtracker.TRIMlist({date:date}, true));
-    }
-  }else{
-    if(appset.users[user].group == "CONS"){
-      list.vhc = list.vhc.concat(asumtracker.TRIMlist({comp:'VHC',cons:appset.users[user].name}));
-      list.bee = list.bee.concat(asumtracker.TRIMlist({comp:'BEE',cons:appset.users[user].name}));
-      list.comb = list.bee.concat(asumtracker.TRIMlist({cons:appset.users[user].name}));
-    }else{
-      list.vhc = list.vhc.concat(asumtracker.TRIMlist({comp:'VHC'}));
-      list.bee = list.bee.concat(asumtracker.TRIMlist({comp:'BEE'}));
-      list.comb = list.bee.concat(asumtracker.list);
-    }
-  }
-  */
+  list.vhc = list.vhc.concat(asumtracker.TRIMlist({comp:'VHC', date:date}, date?true:false));
+  list.bee = list.bee.concat(asumtracker.TRIMlist({comp:'BEE', date:date}, date?true:false));
+  list.comb = list.bee.concat(asumtracker.TRIMlist({ date:date}, date?true:false));
   return list;
 }
 
-var GENmetrics=(list)=>{  // Generates metrics
-  let metrics = {rev:0, leads:0, gleads:0, wins:0, close:0, rpo:0, replace:0, projects:0, env:0, commsub:0, comm:0,
-                  book:{count:0, rate:.01, comm:0},
-                  direct:{sales:0, rate:.01, comm:0},
-                  spec:{sales:0, rate:.05, comm:0},
-                  commish:{}, opts:{},
-                };
-  for(let x=0;x<appset.reporting.commishtable.paygroups.length;x++){
-    metrics.commish[appset.reporting.commishtable.paygroups[x].toLowerCase()]={
+var ametric=(am={})=>{
+  if(!am){am={}}
+  return{
+    rev:am.rev||0,
+    leads:am.leads||0,
+    gleads:am.gleads||0,
+    wins:am.winds||0,
+    close:am.close||0,
+    rpo:am.rpo||0,
+    replace:am.replace||0,
+    projects:am.projects||0,
+    env:am.env||0,
+    commsub:am.commsub||0,
+    comm:am.comm||0,
+    book:am.book||{count:0, rate:.01, comm:0},
+    direct:am.direct||{sales:0, rate:.01, comm:0},
+    spec:am.spec||{sales:0, rate:.05, comm:0},
+    commish:am.commish||{},
+    opts:am.opts||{}
+  }
+}
+
+var GENmetrics=(list,paygroups=appset.reporting.commishtable.paygroups,categories=appset.reporting.categories)=>{  // Generates metrics
+  let metrics = ametric();
+
+  for(let x=0;x<paygroups.length;x++){
+    metrics.commish[paygroups[x].toLowerCase()]={
       total:0,
       spec:0,
       rate:0
     }
   }
-  for(let c in appset.reporting.categories){
+  for(let c in categories){
     metrics.opts[c]={
       total:0,
       spec:0,

@@ -118,7 +118,6 @@ var FILLtab=(tab, user)=>{  // Fills each tab with proper table
 }
 
 
-
 var FILLtop=(user)=>{  // Fills top summary sections
     let list={vhc:[],bee:[],comb:[]};
     let cont = document.getElementById('report-area-metrics-yearly');
@@ -129,16 +128,18 @@ var FILLtop=(user)=>{  // Fills top summary sections
     cont.appendChild(CREATEsumtable(sumtracker.GENmetrics(list.comb),'Total'));
 }
 
-
 var SETUPuseryear = (user=null)=>{
-  GETtlist(user).then(
-    data=>{
-      console.log(data.body.result);
-      sumtracker.SETsumtracker(data.body.result);
-      CREATEviews(appuser);
-      FILLtop(appuser)
-    }
-  )
+  return new Promise((resolve,reject)=>{
+    GETtlist(user).then(
+      data=>{
+        console.log(data.body.result);
+        sumtracker.SETsumtracker(data.body.result);
+        CREATEviews(appuser);
+        FILLtop(appuser);
+        return resolve(data.body.result);
+      }
+    );
+  })
 }
 
 module.exports={

@@ -94,6 +94,13 @@ document.getElementById('tracker-edit-save').addEventListener('click', (ele)=>{
   FILLtop();
 });
 
+// QUOTE SYNCING //
+
+var qtrack = require('../bin/quote-tracking.js');
+
+
+
+
 //var maintlist = new ObjList;
 
 /*
@@ -103,4 +110,15 @@ Grant V
 Ken W
 Jessica V
 */
-creator.SETUPuseryear('Erik F');
+
+creator.SETUPuseryear('Erik F').then(
+  list=>{
+    console.log('User List: ',list);
+    qtrack.GETuntrackedquotes(list,'WARKE').then(
+      ulist=>{
+        console.log('Untracked List: ',ulist);
+        console.log(qtrack.STARTtrackquotes(ulist));
+      }
+    )
+  }
+);
