@@ -1,50 +1,14 @@
 var {ObjList}=require('../repo/tools/box/vg-lists.js');
 var appset = require('../../app/settings.json');
 var floatv = require('../repo/gui/js/modules/vg-floatviews.js');
-var vapi = require('../repo/apis/vapi/vapistore.js');
 
 var asumtracker = null;
 
 var SETsumtracker=(array)=>{
   asumtracker = new ObjList(array);
 }
-
 var index = 0;
 var currtab = '';
-
-var vurl = 'http://localhost:8080/' //public ip;
-var vapp = 'SUMTRACKER';
-
-var PUTtlist=(tr=[])=>{
-  return new Promise((res,rej)=>{
-  var tpull = {
-    db:'mtracker',
-    method:'insert',
-    options:{
-      docs:tr
-    }};
-
-    vapi.SENDrequest(vurl,vapp,tpull).then(
-      result=>{
-        return res(result);
-      }
-    )
-  })
-}
-
-/* Modify Send SENDrequest
-  Look in FT for updated SENDrequest
-*/
-var GETtlist=()=>{
-  return new Promise((res,rej)=>{
-    var tpull = {db:'mtracker',method:'query',options:{query:{}}};
-    vapi.SENDrequest(vurl,vapp,tpull).then(
-      result=>{
-        return res(result);
-      }
-    )
-  })
-}
 
 var EDITtracker=()=>{
   for(let i in asumtrackerrow()){
@@ -170,7 +134,7 @@ var GENcommish=(list)=>{
     }
   }
   console.log(metrics.commish);
-  
+
   if(metrics.close < 30.01){  // calculates commission rates
     metrics.commish.base.rate = .05;
     metrics.commish.mid.rate = .05;
@@ -269,7 +233,5 @@ module.exports={
   GENmetrics,
   GENanalytics,
   GENcommish,
-  GETtlist,
-  PUTtlist,
   SETsumtracker
 }

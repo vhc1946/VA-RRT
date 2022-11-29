@@ -10,23 +10,27 @@ var {app,ipcMain,BrowserWindow,viewtools} = require('./bin/repo/tools/box/electr
 var {loginroutes}=require('./bin/repo/gui/js/modules/login.js');
 ////////////////////////////////////////////////////////////////////////////////
 
-//Midleware //////////////////////////
+//SETUP //////////////////////////
 var controlsroot = path.join(__dirname,'/controllers/'); //dir path to views
 var appset = require('./app/settings.json');//appset.dev.on = true;
 var au = require('./bin/appuser.js'); //initialize the app user object
 var {navroutes}=require('./bin/routes.js');
+
+// HTTPS capable
+app.commandLine.appendSwitch('ignore-certificate-errors');
+app.commandLine.appendSwitch('allow-insecure-localhost','true');
 /////////////////////////////////////
 var {ObjList}=require('./bin/repo/tools/box/vg-lists.js');
-var {GETtlist, PUTtlist}= require('./bin/gui/sumtracker.js');
 
 var maintlist = new ObjList;
 var mainv; //holds the main BrowserWindow
-
 
 require('dns').resolve('www.google.com',(err)=>{ //test for internet connection
   if(err){//is not connected
   }
   else{//is connected
+    console.log('IS online...')
+    /*
     GETtlist().then(
       result=>{
         if(result.data.success){
@@ -36,7 +40,8 @@ require('dns').resolve('www.google.com',(err)=>{ //test for internet connection
           console.log(result);
         }
       }
-    )
+    );
+    */
   }
 });
 
@@ -116,14 +121,6 @@ ipcMain.on('back-to-main',(eve,data)=>{
 });
 
 ///////////////////////////////////////////////////////////////
-ipcMain.on('get-user-tlist',(eve,data)=>{
-  //Get user list
-  //Call load tracker
-  console.log(maintlist.list);
-  eve.sender.send('get-user-tlist',{msg:'success',success:true,data:maintlist.list});
-
-});
-
 ipcMain.on('put-user-tlist',(eve,data)=>{
   //Call save-tlist
   //Return result
