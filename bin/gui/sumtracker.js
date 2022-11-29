@@ -133,6 +133,7 @@ var GENcommish=(list)=>{
       break;
     }
   }
+<<<<<<< HEAD
   console.log(metrics.commish);
 
   if(metrics.close < 30.01){  // calculates commission rates
@@ -169,6 +170,8 @@ var GENcommish=(list)=>{
     metrics.commish.prem.rate = .11;
   }
   console.log(metrics.commish);
+=======
+>>>>>>> 0580d15c21b1d890ac29ab87f507a7b40fa77f0a
 
   for(let key in metrics.commish){
     metrics.commish[key].subtotal = metrics.commish[key].total - metrics.commish[key].spec;

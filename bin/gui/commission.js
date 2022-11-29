@@ -54,9 +54,11 @@ var CREATEcommissions=()=>{
             let metrics = sumtracker.GENcommish(list.comb);
 
             for(let key in metrics.commish){
+              if(key != "other"){
                 for(let bit in metrics.commish[key]){
                     block.getElementsByClassName(`${key}-${bit}`)[0].innerText = metrics.commish[key][bit];
                 }
+              }
             }
 
             block.getElementsByClassName(`comm-stotal`)[0].innerText = metrics.commsub;
@@ -86,7 +88,7 @@ var CREATEcommissions=()=>{
 ipcRenderer.send('get-user-tlist','Analytic request');
 
 ipcRenderer.on('get-user-tlist', (eve,data)=>{
-  console.log(data.data);
+  console.log('Data list>',data.data);
 
   sumtracker.SETsumtracker(data.data);
   
