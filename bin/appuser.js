@@ -26,6 +26,7 @@ var RESETappuser=()=>{
   auser.config = {};
   fs.writeFileSync(locpath+usetfile,JSON.stringify(auser))
 }
+
 module.exports={
   auser,
   SETUPappuser,

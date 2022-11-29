@@ -25,7 +25,6 @@ document.getElementById(lodom.actions.submit).addEventListener('click',(ele)=>{
   ipcRenderer.send(loginroutes.submit,lform);
 });
 
-
 var cuser = JSON.parse(localStorage.getItem(usersls.curruser));
 
 document.getElementById(lodom.inputs.uname).value = cuser.uname!=undefined?cuser.uname:'';
