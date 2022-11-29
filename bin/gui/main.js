@@ -11,6 +11,7 @@ var sumtracker = require('../bin/gui/sumtracker.js');
 var creator = require('../bin/gui/tracker-creation.js');
 var appset = require('../app/settings.json');
 
+var {GETtlist, PUTtlist}= require('../bin/RRT-requests.js');
 
 //  TITLE BAR //////////////////////////////////////////////////////////
 try{
@@ -43,7 +44,7 @@ let mactions={
     src:'../bin/repo/assets/icons/dollar-thin.png',
     title:'Commissions View'
   },
-  
+
 }
 
 let qalist=Titlebar.CREATEactionbuttons(qactions);
@@ -96,12 +97,16 @@ document.getElementById('tracker-edit-save').addEventListener('click', (ele)=>{
   FILLtop();
 });
 
-ipcRenderer.send('get-user-tlist','Analytic request');
+//var maintlist = new ObjList;
+var SETUPuseryear = ()=>{
+  GETtlist().then(
+    data=>{
+      console.log(data.body.result);
+      sumtracker.SETsumtracker(data.body.result);
+      creator.CREATEviews(appuser);
+      creator.FILLtop(appuser)
+    }
+  )
+}
 
-ipcRenderer.on('get-user-tlist', (eve,data)=>{
-  console.log(data.data);
-
-  sumtracker.SETsumtracker(data.data);
-  creator.CREATEviews(appuser);
-  creator.FILLtop(appuser)
-});
+SETUPuseryear();
