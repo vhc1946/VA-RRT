@@ -1,6 +1,7 @@
 var {ObjList}=require('../repo/tools/box/vg-lists.js');
 var appset = require('../../app/settings.json');
 var floatv = require('../repo/gui/js/modules/vg-floatviews.js');
+var { trackerform } = require('./tracker-form.js');
 
 var asumtracker = null;
 
@@ -10,7 +11,19 @@ var SETsumtracker=(array)=>{
 var index = 0;
 var currtab = '';
 
-var EDITtracker=()=>{
+var EDITtracker=(lrow)=>{
+  for(let i=0;i<asumtracker.list.length;i++){
+    if(asumtracker.list[i].client == lrow.children[1].innerText){
+      index = i;
+      currtab = lrow.parentNode.parentNode.id;
+      break;
+    }
+  }
+  let tform = new trackerform(document.createElement('div'));
+  document.getElementById('preview-popup').appendChild(tform.cont);
+
+  console.log(index);
+  /*
   for(let i in asumtrackerrow()){
     if(i != 'amounts'){
       document.getElementById(`preview-value-${i}`).value = asumtracker.list[index][i];
@@ -19,7 +32,7 @@ var EDITtracker=()=>{
         document.getElementById(`preview-value-${x}`).value = asumtracker.list[index][i][x];
       }
     }
-  }
+  }*/
   floatv.SELECTview(document.getElementById('preview-center'),'Lead Overview');//open lead preview
 }
 
