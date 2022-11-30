@@ -43,15 +43,15 @@ var aqtrack=(qt={})=>{
 var quotes = new NEDBconnect(mquotes);
 
 /* Get untracked Quotes
-  Gets user quotes and searches to see if there are any quotes no currently being
+  Gets user quotes and searches to see if there are any quotes not currently being
   tracked. It adds these to an array for the user to view.
 */
 var GETuntrackedquotes = (tlist,cons=undefined)=>{
   return new Promise((resolve,reject)=>{
     quotes.QUERYdb(cons?{estimator:cons}:cons).then(
       res=>{
-        let arr = res.err?[]:res.docs;
-        utlist = [];
+        let arr = res.err?[]:res.docs; //list of quotes
+        let utlist = []; //list of untracked quotes
         for(let x=0,l=arr.length;x<l;x++){
           let found = false;
           for(let y=0,ll=tlist.length;y<ll;y++){
