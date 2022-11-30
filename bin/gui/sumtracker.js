@@ -1,6 +1,7 @@
 var {ObjList}=require('../repo/tools/box/vg-lists.js');
 var appset = require('../../app/settings.json');
 var floatv = require('../repo/gui/js/modules/vg-floatviews.js');
+var { trackerform } = require('./tracker-form.js');
 
 var asumtracker = null;
 
@@ -10,15 +11,17 @@ var SETsumtracker=(array)=>{
 var index = 0;
 var currtab = '';
 
-var EDITtracker=()=>{
-  for(let i in asumtrackerrow()){
-    if(i != 'amounts'){
-      document.getElementById(`preview-value-${i}`).value = asumtracker.list[index][i];
-    }else{
-      for(let x in asumtracker.list[index].amounts){
-        document.getElementById(`preview-value-${x}`).value = asumtracker.list[index][i][x];
-      }
+var EDITtracker=(lrow)=>{
+  for(let i=0;i<asumtracker.list.length;i++){
+    if(asumtracker.list[i].client == lrow.children[1].innerText){
+      index = i;
+      currtab = lrow.parentNode.parentNode.id;
+      break;
     }
+  }
+  console.log(index);
+  for(let i in asumtracker.list[index]){
+    document.getElementById(`preview-value-${i}`).value = asumtracker.list[index][i];
   }
   floatv.SELECTview(document.getElementById('preview-center'),'Lead Overview');//open lead preview
 }
