@@ -28,7 +28,7 @@ var GETtlist=(cons=null)=>{
       store:'SUMTRACKER',
       db:'mtracker',
       method:'query',
-      options:{query:{cons:cons?cons:undefined}}
+      options:{query:{estimator:cons?cons:undefined}}
     };
     vapi.SENDrequestapi(tpull,'mart').then(
       result=>{
