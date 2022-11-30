@@ -117,16 +117,34 @@ var path=require('path');
 creator.SETUPuseryear('Erik F').then(
   list=>{
 
+    for(let i=0;i<list.length;i++){
+      list[i].bookprc = (list[i].bookprc.toUpperCase() == "Y")?true:false;
+      list[i].finance = (list[i].finance.toUpperCase() == "Y")?true:false;
+      list[i].rewards = (list[i].rewards.toUpperCase() == "Y")?true:false;
+      
+      list[i].estimator = list[i].cons;
+      delete list[i].cons;
+      
+      for(let cat in list[i].amounts){
+        if(list[i].amounts[cat] > 0){
+          list[i].amount = list[i].amounts[cat];
+          list[i].cat = cat;
+          break;
+        }
+      }
+      delete list[i].amounts;
+
+      list[i] = qtrack.aqtrack(list[i]);
+
+    }
+
+    console.log("Converted> ",list);
+
     fs.writeFile(path.join(__dirname,'../store/convertlist.json'),JSON.stringify(list),(err)=>{
       console.log(err?err:'WAS filed');
     });
 
-
-
-
-
-
-    console.log('User List: ',list);
+    console.log("User's List: ",list);
     qtrack.GETuntrackedquotes(list,'WARKE').then(
       ulist=>{
         console.log('Untracked List: ',ulist);

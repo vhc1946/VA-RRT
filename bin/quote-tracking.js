@@ -118,5 +118,6 @@ var CREATEquotetrack=()=>{
 
 module.exports={
   GETuntrackedquotes,
-  STARTtrackquotes
+  STARTtrackquotes,
+  aqtrack
 }
