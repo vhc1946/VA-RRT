@@ -1,4 +1,4 @@
-var { VHCform } = require("../repo/tools/vhc-forms.js");
+var { VHCform } = require("../repo/tools/box/vhc-forms.js");
 
 class trackerform extends VHCform{
     constructor(cont){
@@ -34,7 +34,7 @@ class trackerform extends VHCform{
         },
         buttons:{
             save:"preview-button-save"
-        } 
+        }
     }
 
     content=`
@@ -52,7 +52,7 @@ class trackerform extends VHCform{
             <div class="preview-area-appt">
                 <label>Lead Date</label><input id="${this.dom.date}">
                 <label>Time Ran</label><input id="${this.dom.time}">
-                <label>Company</label><input id="${this.dom.comp}">                        
+                <label>Company</label><input id="${this.dom.comp}">
                 <label>Lead Source</label><input id="${this.dom.source}">
                 <label>Lead Generator</label><input id="${this.dom.lead}">
                 <label>Rewards</label><input id="${this.dom.rewards}">

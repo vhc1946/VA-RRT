@@ -98,8 +98,7 @@ Jessica V
 var fs = require('fs');
 var path=require('path');
 
-
-creator.SETUPuseryear('Erik F').then(
+creator.SETUPuseryear(appset.users[appuser].group!='MAN'?appset.users[appuser].name:undefined).then(
   list=>{
     console.log('User List: ',list);
     qtrack.GETuntrackedquotes(list,'VOGCH').then(
