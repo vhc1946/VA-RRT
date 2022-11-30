@@ -19,20 +19,10 @@ var EDITtracker=(lrow)=>{
       break;
     }
   }
-  let tform = new trackerform(document.createElement('div'));
-  document.getElementById('preview-popup').appendChild(tform.cont);
-
   console.log(index);
-  /*
-  for(let i in asumtrackerrow()){
-    if(i != 'amounts'){
-      document.getElementById(`preview-value-${i}`).value = asumtracker.list[index][i];
-    }else{
-      for(let x in asumtracker.list[index].amounts){
-        document.getElementById(`preview-value-${x}`).value = asumtracker.list[index][i][x];
-      }
-    }
-  }*/
+  for(let i in asumtracker.list[index]){
+    document.getElementById(`preview-value-${i}`).value = asumtracker.list[index][i];
+  }
   floatv.SELECTview(document.getElementById('preview-center'),'Lead Overview');//open lead preview
 }
 
