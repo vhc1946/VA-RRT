@@ -1,4 +1,4 @@
-var { VHCform } = require("../repo/tools/vhc-forms.js");
+var { VHCform } = require("../repo/tools/box/vhc-forms.js");
 
 class trackerform extends VHCform{
     constructor(cont){
@@ -34,7 +34,7 @@ class trackerform extends VHCform{
         },
         buttons:{
             save:"preview-button-save"
-        } 
+        }
     }
 
     content=`
