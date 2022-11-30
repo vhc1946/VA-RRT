@@ -5,7 +5,6 @@ var {NEDBconnect}=require('./repo/tools/box/nedb-connector.js');
 
 var rrstore = path.join(auser.cuser.spdrive,apaths.deproot,apaths.store.root);
 var mquotes = path.join(__dirname,'../store/masterquotes.db')//path.join(rrstore,apaths.store.mquotes);
-console.log(mquotes);
 
 var aqtrack=(qt={})=>{
   if(!qt){qt={};}
@@ -21,17 +20,17 @@ var aqtrack=(qt={})=>{
     zip:qt.zip||'',
 
     comp:qt.comp||'VHC',
-    cons:qt.cons||'',
+    estimator:qt.estimator||'',
     date:qt.date||new Date().toISOString().split('T')[0],
 
-    finance:qt.finance||'',
+    finance:qt.finance||false,
     bookprc:qt.boodprc||true,
-    rewards:qt.rewards||true,
-    saletype:qt.saletype||'',
-    lead:qt.lead||'',
-    source:qt.source||'',
+    rewards:qt.rewards||false,
+    saletype:qt.saletype||'', //Full Component Other
+    lead:qt.lead||'', // [list sourced from vapi]
+    source:qt.source||'', // [list sourced from vapi]
     sold:qt.sold||false,
-    cat:qt.cat||'',
+    cat:qt.cat||'', // [list sourced from vapi]
     amount:qt.amount||0,
 
     prstvia:qt.prstvia||'',
@@ -84,7 +83,6 @@ var GETuntrackedquotes = (tlist,cons=undefined)=>{
 var STARTtrackquotes = (ulist)=>{
   let tlist = [];
   for(let x=0,l=ulist.length;x<l;x++){
-    console.log(ulist[x])
     let systems = ulist[x].info.build?ulist[x].info.build.systems:[];
     for(let y=0,ll=systems.length;y<ll;y++){
       //create new track
@@ -93,6 +91,7 @@ var STARTtrackquotes = (ulist)=>{
         client:ulist[x].customer.name,
         street:ulist[x].street,
         city:ulist[x].city,
+        estimator:ulist[x].estimator,
         zip:ulist[x].zip,
         cat:'system'
       }));

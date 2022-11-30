@@ -112,9 +112,20 @@ Grant V
 Ken W
 Jessica V
 */
-
+var fs = require('fs');
+var path=require('path');
 creator.SETUPuseryear('Erik F').then(
   list=>{
+
+    fs.writeFile(path.join(__dirname,'../store/convertlist.json'),JSON.stringify(list),(err)=>{
+      console.log(err?err:'WAS filed');
+    });
+
+
+
+
+
+
     console.log('User List: ',list);
     qtrack.GETuntrackedquotes(list,'WARKE').then(
       ulist=>{
