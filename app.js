@@ -20,10 +20,24 @@ var {navroutes}=require('./bin/routes.js');
 app.commandLine.appendSwitch('ignore-certificate-errors');
 app.commandLine.appendSwitch('allow-insecure-localhost','true');
 /////////////////////////////////////
+
+// OUTPUT README
+fs.readFile('./README.md',(err,doc)=>{
+  if(!err){console.log(doc.toString());}
+  else{console.log(err)}
+});
+////////////////
+
+
 var {ObjList}=require('./bin/repo/tools/box/vg-lists.js');
 
 var maintlist = new ObjList;
 var mainv; //holds the main BrowserWindow
+
+
+
+
+
 
 require('dns').resolve('www.google.com',(err)=>{ //test for internet connection
   if(err){//is not connected
