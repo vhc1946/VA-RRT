@@ -9,6 +9,7 @@ var {aappuser} = require('../bin/repo/ds/users/vogel-users.js');
 var {usersls}=require('../bin/gui/storage/lstore.js');
 var creator = require('../bin/gui/tracker-creation.js');
 var appset = require('../app/settings.json');
+var { FINDparentele } = require('../bin/repo/gui/js/tools/vg-displaytools.js');
 
 //  TITLE BAR //////////////////////////////////////////////////////////
 try{
@@ -73,13 +74,13 @@ if(appset.users[appuser].group == "CONS"){
 
 
 document.getElementById('tracker-tables').addEventListener('dblclick',(ele)=>{
-  let lrow = gendis.FINDparentele(ele.target,'tracker-row');
+  let lrow = FINDparentele(ele.target,'tracker-row');
   if(lrow){
     for(let i=0;i<asumtracker.list.length;i++){
       if(asumtracker.list[i].client == lrow.children[1].innerText){
         index = i;
         currtab = lrow.parentNode.parentNode.id;
-        EDITtracker();
+        creator.EDITtracker();
         break;
       }
     }
@@ -97,6 +98,7 @@ document.getElementById('tracker-edit-save').addEventListener('click', (ele)=>{
 // QUOTE SYNCING //
 
 var qtrack = require('../bin/quote-tracking.js');
+
 
 
 

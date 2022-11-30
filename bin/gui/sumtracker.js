@@ -126,10 +126,12 @@ var GENcommish=(list)=>{
     metrics.commish.prem[key] = metrics.opts.option1[key];
   }
 
-  for(let x=0;x<appset.reporting.commishtable.closerates.length;x++){
-    if(metrics.close < appset.reporting.commishtable.closerates[x].rate){
-      for(let y=0;y<appset.reporting.commishtable.paygroups.length;y++){
-        metrics.commish[appset.reporting.commishtable.paygroups[y].toLowerCase()].rate=appset.reporting.commishtable.closerates[x].payouts[y]}
+  let ctable = appset.reporting.commishtable;
+  
+  for(let x=0;x<ctable.closerates.length;x++){
+    if(metrics.close < ctable.closerates[x].rate){
+      for(let y=0;y<ctable.paygroups.length;y++){
+        metrics.commish[ctable.paygroups[y].toLowerCase()].rate=ctable.closerates[x].payouts[y]}
       break;
     }
   }
@@ -180,6 +182,14 @@ var GENcommish=(list)=>{
   metrics.spec.comm = Math.trunc(metrics.spec.sales * metrics.spec.rate);
 
   metrics.book.percent = (1 - (metrics.book.count / metrics.leads));
+
+  for(let x=0;x<ctable.bookrates.length;x++){
+    if(metrics.book.percent < ctable.bookrates[x].rate){
+      metrics.book.rate = ctable.bookrates[x].payout;
+      break;
+    }
+  }
+
   if(metrics.book.percent < .501){  // calculates Book Price modifier
     metrics.book.rate = -.03;
   }else if(metrics.book.percent < .601){
@@ -233,5 +243,6 @@ module.exports={
   GENmetrics,
   GENanalytics,
   GENcommish,
-  SETsumtracker
+  SETsumtracker,
+  EDITtracker
 }

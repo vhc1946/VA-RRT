@@ -115,8 +115,22 @@
         {"rate":60,"payouts":[0.08,0.08,0.09,0.10]},
         {"rate":100,"payouts":[0.08,0.09,0.10,0.11]}
       ],
-      "bookrate":[
-        {"rate":0,"payout":0}
+      "bookrates":[
+        {"rate":0.501,"payout":-0.03},
+        {"rate":0.601,"payout":-0.02},
+        {"rate":0.701,"payout":-0.01},
+        {"rate":0.801,"payout":-0.005},
+        {"rate":0.85,"payout":0.000},
+        {"rate":0.86,"payout":0.001},
+        {"rate":0.87,"payout":0.002},
+        {"rate":0.88,"payout":0.003},
+        {"rate":0.89,"payout":0.004},
+        {"rate":0.90,"payout":0.005},
+        {"rate":0.91,"payout":0.006},
+        {"rate":0.92,"payout":0.007},
+        {"rate":0.93,"payout":0.008},
+        {"rate":0.94,"payout":0.009},
+        {"rate":1.0,"payout":0.01}
       ]
     }
   }
