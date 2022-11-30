@@ -5,7 +5,6 @@ var {NEDBconnect}=require('./repo/tools/box/nedb-connector.js');
 
 var rrstore = path.join(auser.cuser.spdrive,apaths.deproot,apaths.store.root);
 var mquotes = path.join(__dirname,'../store/masterquotes.db')//path.join(rrstore,apaths.store.mquotes);
-console.log(mquotes);
 
 var aqtrack=(qt={})=>{
   if(!qt){qt={};}
