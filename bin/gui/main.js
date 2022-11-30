@@ -125,7 +125,7 @@ creator.SETUPuseryear('Erik F').then(
 
 
     console.log('User List: ',list);
-    qtrack.GETuntrackedquotes(list,'WARKE').then(
+    qtrack.GETuntrackedquotes(list,'VOGCH').then(
       ulist=>{
         console.log('Untracked List: ',ulist);
         console.log(qtrack.STARTtrackquotes(ulist));
