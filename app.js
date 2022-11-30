@@ -36,9 +36,6 @@ var mainv; //holds the main BrowserWindow
 
 
 
-
-
-
 require('dns').resolve('www.google.com',(err)=>{ //test for internet connection
   if(err){//is not connected
   }
