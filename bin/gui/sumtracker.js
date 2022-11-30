@@ -19,9 +19,10 @@ var EDITtracker=(lrow)=>{
       break;
     }
   }
-  console.log(index);
   for(let i in asumtracker.list[index]){
-    document.getElementById(`preview-value-${i}`).value = asumtracker.list[index][i];
+    if(document.getElementById(`preview-value-${i}`)){
+      document.getElementById(`preview-value-${i}`).value = asumtracker.list[index][i];
+    }
   }
   floatv.SELECTview(document.getElementById('preview-center'),'Lead Overview');//open lead preview
 }

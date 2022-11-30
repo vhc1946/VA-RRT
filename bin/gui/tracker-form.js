@@ -14,7 +14,7 @@ class trackerform extends VHCform{
             street:"preview-value-street",
             city:"preview-value-city",
             zip:"preview-value-zip",
-            phone1:"preview-value-phone1",
+            phone:"preview-value-phone",
             email:"preview-value-email",
             date:"preview-value-date",
             time:"preview-value-time",
@@ -42,33 +42,33 @@ class trackerform extends VHCform{
         <div class="${this.dom.header}">LEAD OVERVIEW</div>
         <div class="preview-area-body">
             <div class="preview-area-client">
-                <label>Client Name</label><input id="${this.dom.client}">
-                <label>Client Street</label><input id="${this.dom.street}">
-                <label>Client City</label><input id="${this.dom.city}">
-                <label>Client Zip</label><input id="${this.dom.zip}">
-                <label>Contact Phone</label><input id="${this.dom.phone1}">
-                <label>Contact Email</label><input id="${this.dom.email}">
+                <label>Client Name</label><input id="${this.dom.values.client}">
+                <label>Client Street</label><input id="${this.dom.values.street}">
+                <label>Client City</label><input id="${this.dom.values.city}">
+                <label>Client Zip</label><input id="${this.dom.values.zip}">
+                <label>Contact Phone</label><input id="${this.dom.values.phone1}">
+                <label>Contact Email</label><input id="${this.dom.values.email}">
             </div>
             <div class="preview-area-appt">
-                <label>Lead Date</label><input id="${this.dom.date}">
-                <label>Time Ran</label><input id="${this.dom.time}">
-                <label>Company</label><input id="${this.dom.comp}">                        
-                <label>Lead Source</label><input id="${this.dom.source}">
-                <label>Lead Generator</label><input id="${this.dom.lead}">
-                <label>Rewards</label><input id="${this.dom.rewards}">
-                <label>Preseted Via</label><input id="${this.dom.prstvia}">
-                <label>Preseted On</label><input id="${this.dom.prstdate}">
-                <label>Book Price Used</label><input id="${this.dom.bookprc}">
+                <label>Lead Date</label><input id="${this.dom.values.date}">
+                <label>Time Ran</label><input id="${this.dom.values.time}">
+                <label>Company</label><input id="${this.dom.values.comp}">                        
+                <label>Lead Source</label><input id="${this.dom.values.source}">
+                <label>Lead Generator</label><input id="${this.dom.values.lead}">
+                <label>Rewards</label><input id="${this.dom.values.rewards}">
+                <label>Preseted Via</label><input id="${this.dom.values.prstvia}">
+                <label>Preseted On</label><input id="${this.dom.values.prstdate}">
+                <label>Book Price Used</label><input id="${this.dom.values.bookprc}">
             </div>
             <div class="preview-area-sale">
                 <div class="preview-sales-misc">
-                    <label>Financed</label><input id="${this.dom.finance}">
-                    <label>Sale Type</label><input id="${this.dom.saletype}">
+                    <label>Financed</label><input id="${this.dom.values.finance}">
+                    <label>Sale Type</label><input id="${this.dom.values.saletype}">
                 </div>
                 <div class="preview-sales-main">
-                    <label>Category</label><input id="${this.dom.cat}">
-                    <label>Amount</label><input id="${this.dom.amount}">
-                    <label>Sold?</label><input id="${this.dom.sold}">
+                    <label>Category</label><input id="${this.dom.values.cat}">
+                    <label>Amount</label><input id="${this.dom.values.amount}">
+                    <label>Sold?</label><input id="${this.dom.values.sold}">
                 </div>
             </div>
             <div class="preview-area-buttons">
