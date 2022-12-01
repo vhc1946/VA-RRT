@@ -10,6 +10,7 @@ var vcontrol = require('../bin/repo/gui/js/layouts/view-controller.js');
 var appset = require('../app/settings.json');
 
 var sumtracker = require('../bin/gui/sumtracker.js');
+const { GETtlist } = require('../bin/RRT-requests.js');
 
 //  TITLE BAR //
 try{
@@ -24,7 +25,6 @@ let qactions={
     src:'../bin/repo/assets/icons/angle-double-left.png'
   },
 }
-
 let qalist=Titlebar.CREATEactionbuttons(qactions);
 
 Titlebar.ADDqactions(qalist);
@@ -53,6 +53,8 @@ var CREATEcommissions=()=>{
             list = sumtracker.GENlists(list,key);
             let metrics = sumtracker.GENcommish(list.comb);
 
+            console.log(metrics);
+            
             for(let key in metrics.commish){
               if(key != "other"){
                 for(let bit in metrics.commish[key]){
@@ -84,13 +86,10 @@ var CREATEcommissions=()=>{
     }
 }
 
-
-ipcRenderer.send('get-user-tlist','Analytic request');
-
-ipcRenderer.on('get-user-tlist', (eve,data)=>{
-  console.log('Data list>',data.data);
-
-  sumtracker.SETsumtracker(data.data);
-  
-  CREATEcommissions();
-});
+GETtlist(appset.users[appuser].group!='MAN'?appset.users[appuser].name:undefined).then(
+  data=>{
+    console.log(data.body.result);
+    sumtracker.SETsumtracker(data.body.result);
+    CREATEcommissions();
+  }
+);
