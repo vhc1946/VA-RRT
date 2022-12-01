@@ -1,51 +1,9 @@
-var {ObjList}=require('../repo/tools/box/vg-lists.js');
 var appset = require('../../app/settings.json');
-var floatv = require('../repo/gui/js/modules/vg-floatviews.js');
-var { TrackerForm } = require('./tracker-form.js');
 
-var asumtracker = null;
-var index = 0;
-var currtab = '';
-
-var SETsumtracker=(array)=>{
-  if(asumtracker){asumtracker.SETlist(array);}
-  else{asumtracker = new ObjList(array);}
-}
-// setup drop list
-var droplist = {
-  cat:[],
-  source:[],
-  comp:[],
-  time:[],
-  prstvia:[]
-}
-for(let list in droplist){
-  for(let c in appset.reporting[list]){droplist[list].push(c);}
-}
-
-/////////////////
-var editform = new TrackerForm(document.createElement('div'),droplist);
-document.getElementById('preview-popup').appendChild(editform.cont);
-
-var EDITtracker=(lrow=null)=>{
-  if(lrow){
-    for(let i=0;i<asumtracker.list.length;i++){
-      if(asumtracker.list[i].client == lrow.children[1].innerText){
-        index = i;
-        currtab = lrow.parentNode.parentNode.id;
-        break;
-      }
-    }
-    console.log(asumtracker.list[index])
-    editform.loadform(asumtracker.list[index]);
-  }else{editform.loadform(undefined);}
-  floatv.SELECTview(document.getElementById('preview-center'),'Lead Overview');//open lead preview
-}
-
-var GENlists=(list,date=null)=>{
-  list.vhc = list.vhc.concat(asumtracker.TRIMlist({comp:'VHC', date:date}, date?true:false));
-  list.bee = list.bee.concat(asumtracker.TRIMlist({comp:'BEE', date:date}, date?true:false));
-  list.comb = list.bee.concat(asumtracker.TRIMlist({ date:date}, date?true:false));
+var GENlists=(list,data,date=null)=>{
+  list.vhc = list.vhc.concat(data.TRIMlist({comp:'VHC', date:date}, date?true:false));
+  list.bee = list.bee.concat(data.TRIMlist({comp:'BEE', date:date}, date?true:false));
+  list.comb = list.bee.concat(data.TRIMlist({ date:date}, date?true:false));
   return list;
 }
 
@@ -259,8 +217,5 @@ module.exports={
   GENlists,
   GENmetrics,
   GENanalytics,
-  GENcommish,
-  SETsumtracker,
-  EDITtracker,
-  droplist
+  GENcommish
 }

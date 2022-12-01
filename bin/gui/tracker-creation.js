@@ -1,5 +1,8 @@
 var vcontrol = require('../repo/gui/js/layouts/view-controller.js');
 var vgtables = require('../repo/gui/js/modules/vg-tables.js');
+var appset = require('../../app/settings.json');
+
+var {ObjList}=require('../repo/tools/box/vg-lists.js');
 
 var { FilterForm } = require('./filter-form.js');
 var { TrackerForm } = require('./tracker-form.js');
@@ -10,6 +13,9 @@ var {GETtlist}= require('..//RRT-requests.js');
 var molist = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
 var monum = ['01','02','03','04','05','06','07','08','09','10','11','12'];
 var today = new Date();
+var asumtracker = null;
+var index = 0;
+var currtab = '';
 
 var tableheaders = {
       estimator: "CONSULTANT",
@@ -97,12 +103,12 @@ var FILLtab=(tab, user)=>{  // Fills each tab with proper table
     if(tab == 'CO'){
         for(let i=1;i<10;i++){  //loops through last nine years to create CarryOver List
             year = today.getFullYear() - i;
-            list=sumtracker.GENlists(list,year);
+            list=sumtracker.GENlists(list,asumtracker,year);
         }
     }else{
         for(let m in molist){
             if(molist[m]==tab){
-                list=sumtracker.GENlists(list,today.getFullYear()+'-'+monum[m]+'-');
+                list=sumtracker.GENlists(list,asumtracker,today.getFullYear()+'-'+monum[m]+'-');
             }
         }
     }
@@ -121,23 +127,60 @@ var FILLtab=(tab, user)=>{  // Fills each tab with proper table
 var FILLtop=(user)=>{  // Fills top summary sections
     let list={vhc:[],bee:[],comb:[]};
     let cont = document.getElementById('report-area-metrics-yearly');
-    list = sumtracker.GENlists(list);
+    list = sumtracker.GENlists(list,asumtracker);
 
     cont.appendChild(CREATEsumtable(sumtracker.GENmetrics(list.vhc),'Vogel'));
     cont.appendChild(CREATEsumtable(sumtracker.GENmetrics(list.bee),'BEE'));
     cont.appendChild(CREATEsumtable(sumtracker.GENmetrics(list.comb),'Total'));
 }
+//// Popups //////////////////////////////////////////////////////////////
+var droplist = {
+  cat:[],
+  source:[],
+  comp:[],
+  time:[],
+  prstvia:[],
+  saletype:[]
+}
 
-var filterform = new FilterForm(document.createElement('div'),sumtracker.droplist);  // Creates filter form contianer
+for(let list in droplist){
+  for(let c in appset.reporting[list]){droplist[list].push(c);}
+}
+var editform = new TrackerForm(document.createElement('div'),droplist);
+document.getElementById('preview-popup').appendChild(editform.cont);
+
+var filterform = new FilterForm(document.createElement('div'),droplist);  // Creates filter form contianer
 document.getElementById('filter-popup').appendChild(filterform.cont);
 
+
+////////////////////////////////////////////////////////////////////////
+
+var SETsumtracker=(array)=>{
+  if(asumtracker){asumtracker.SETlist(array);}
+  else{asumtracker = new ObjList(array);}
+}
+
+var EDITtracker=(lrow=null)=>{
+  if(lrow){
+    for(let i=0;i<asumtracker.list.length;i++){
+      if(asumtracker.list[i].client == lrow.children[1].innerText){
+        index = i;
+        currtab = lrow.parentNode.parentNode.id;
+        break;
+      }
+    }
+    console.log(asumtracker.list[index])
+    editform.loadform(asumtracker.list[index]);
+  }else{editform.loadform(undefined);}
+  floatv.SELECTview(document.getElementById('preview-center'),'Lead Overview');//open lead preview
+}
 
 var SETUPuseryear = (user=null)=>{
   return new Promise((resolve,reject)=>{
     GETtlist(user).then(
       data=>{
         console.log(data.body.result);
-        sumtracker.SETsumtracker(data.body.result);
+        SETsumtracker(data.body.result);
         CREATEviews(appuser);
         FILLtop(appuser);
         return resolve(data.body.result);
@@ -147,6 +190,8 @@ var SETUPuseryear = (user=null)=>{
 }
 
 
+
 module.exports={
-  SETUPuseryear
+  SETUPuseryear,
+  EDITtracker
 }

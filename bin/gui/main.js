@@ -11,7 +11,6 @@ var creator = require('../bin/gui/tracker-creation.js');
 var appset = require('../app/settings.json');
 var { FINDparentele } = require('../bin/repo/gui/js/tools/vg-displaytools.js');
 var floatv = require('../bin/repo/gui/js/modules/vg-floatviews.js');
-var { EDITtracker } = require('../bin/gui/sumtracker.js');
 var qtrack = require('../bin/quote-tracking.js');
 
 
@@ -60,7 +59,7 @@ document.getElementById(Titlebar.tbdom.page.user).addEventListener('click',(ele)
   ipcRenderer.send(navroutes.gotologin,'Opening Login Dash...');
 });
 document.getElementById(qactions.new.id).addEventListener('dblclick',(ele)=>{
-  EDITtracker();
+  creator.EDITtracker();
 });
 document.getElementById(qactions.filter.id).addEventListener('dblclick',(ele)=>{
   floatv.SELECTview(document.getElementById('preview-center'),'Filter Options'); // open filter box
@@ -82,7 +81,7 @@ if(appset.users[appuser].group == "CONS"){
 document.getElementById('tracker-tables').addEventListener('dblclick',(ele)=>{
   let lrow = FINDparentele(ele.target,'tracker-row');
   if(lrow){
-    EDITtracker(lrow);
+    creator.EDITtracker(lrow);
   }
 });
 

@@ -8,8 +8,14 @@ class FilterForm extends VHCform {
         this.setinputs(this.dom.values);  // register input elements
 
         for(let d in droplist){
+            let ele = document.createElement('option');
+            ele.value = " ";
+            ele.textContent= " ";
+  
+            this.inputs[d].appendChild(ele);
+
             for(let x=0;x<droplist[d].length;x++){
-              var ele = document.createElement('option');
+              let ele = document.createElement('option');
               ele.value = droplist[d][x];
               ele.textContent=droplist[d][x];
     
@@ -43,11 +49,11 @@ class FilterForm extends VHCform {
                 <label>Client Name</label><input class="${this.dom.values.client}">
             </div>
             <div class="preview-area-appt">
-                <label>Time Ran</label><input class="${this.dom.values.time}" type="search">
-                <label>Company</label><input class="${this.dom.values.comp}">
+                <label>Time Ran</label><select class="${this.dom.values.time}"></select>
+                <label>Company</label><select class="${this.dom.values.comp}"></select>
                 <label>Lead Source</label><select class="${this.dom.values.source}"></select>
                 <label>Rewards</label><input class="${this.dom.values.rewards}" type="checkbox">
-                <label>Preseted Via</label><input class="${this.dom.values.prstvia}">
+                <label>Preseted Via</label><select class="${this.dom.values.prstvia}"></select>
             </div>
             <div class="preview-area-sale">
                 <label>Financed</label><input class="${this.dom.values.finance}" type="checkbox">

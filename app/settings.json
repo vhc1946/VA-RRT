@@ -189,6 +189,13 @@
       "Emailed":"Emailed",
       "US Post":"US Post",
       "Office":"Office"
+    },
+    "saletype":{
+      "System":"System",
+      "Condensor":"Condensor",
+      "Furnace":"Furnace",
+      "IAQ":"IAQ",
+      "Other":"Other"
     }
 
   }
