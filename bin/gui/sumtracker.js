@@ -14,9 +14,14 @@ var SETsumtracker=(array)=>{
 // setup drop list
 var droplist = {
   cat:[],
-  time:['Day','Evening','Weekend']
+  source:[],
+  comp:[],
+  time:[],
+  prstvia:[]
 }
-for(let c in appset.reporting.categories){droplist.cat.push(c);} //add categories
+for(let list in droplist){
+  for(let c in appset.reporting[list]){droplist[list].push(c);}
+}
 
 /////////////////
 var editform = new TrackerForm(document.createElement('div'),droplist);
@@ -118,10 +123,6 @@ var GENmetrics=(list,paygroups=appset.reporting.commishtable.paygroups,categorie
     metrics.rpo = 0;
     metrics.close = 0;
   }
-
-  metrics.replace = metrics.opts.option4.total + metrics.opts.option3.total + metrics.opts.option2.total + metrics.opts.option1.total + metrics.opts.boiler.total;
-  metrics.projects = metrics.opts.cutin.total + metrics.opts.desbuild.total;
-  metrics.env = metrics.opts.windows.total + metrics.opts.doors.total + metrics.opts.gblock.total + metrics.opts.insul.totals;
 
   return metrics;
 }
@@ -260,5 +261,6 @@ module.exports={
   GENanalytics,
   GENcommish,
   SETsumtracker,
-  EDITtracker
+  EDITtracker,
+  droplist
 }

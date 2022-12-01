@@ -83,11 +83,11 @@ class TrackerForm extends VHCform{
             <div class="preview-area-appt">
                 <label>Lead Date</label><input class="${this.dom.values.date}" type="date">
                 <label>Time Ran</label><select class="${this.dom.values.time}"></select>
-                <label>Company</label><input class="${this.dom.values.comp}">
+                <label>Company</label><select class="${this.dom.values.comp}"></select>
                 <label>Lead Source</label><select class="${this.dom.values.source}"></select>
                 <label>Lead Generator</label><select class="${this.dom.values.lead}"></select>
                 <label>Rewards</label><input class="${this.dom.values.rewards}" type="checkbox">
-                <label>Preseted Via</label><input class="${this.dom.values.prstvia}">
+                <label>Preseted Via</label><select class="${this.dom.values.prstvia}"></select>
                 <label>Preseted On</label><input class="${this.dom.values.prstdate}" type="date">
                 <label>Book Price Used</label><input class="${this.dom.values.bookprc}" type="checkbox">
             </div>

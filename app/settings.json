@@ -49,7 +49,7 @@
     "MAN":{"main":"main.html"}
   },
   "reporting":{
-    "categories":{
+    "cat":{
       "iaq":{
         "descr":"IAQ",
         "paygroup":1
@@ -132,6 +132,64 @@
         {"rate":0.94,"payout":0.009},
         {"rate":1.0,"payout":0.01}
       ]
+    },
+    "source":{
+      "Acquaintance":"Acquaintance",
+      "Direct Referal":"Direct Referal",
+      "Referal":"Referal",
+      "Existing Customer":"Existing Customer",
+      "Service Referal":"Service Referal",
+      "Service Contract":"Service Contract",
+      "Competitor Referal":"Competitor Referal",
+      "New Systems":"New Systems",
+      "Stickers of Equipment":"Stickers of Equipment",
+      "Trucks":"Trucks",
+      "Direct Mail":"Direct Mail",
+      "Doorhangers":"Doorhangers",
+      "Business Card":"Business Card",
+      "Fenton Office":"Fenton Office",
+      "Google":"Google",
+      "Instagram":"Instagram",
+      "YouTube":"YouTube",
+      "Pandora":"Pandora",
+      "Spotify":"Spotify",
+      "Streaming TV":"Streaming TV",
+      "Television":"Television",
+      "Newspaper":"Newspaper",
+      "Billboard":"Billboard",
+      "Yellow Pages":"Yellow Pages",
+      "yellowpages.com":"yellowpages.com",
+      "Ad Pages":"Ad Pages",
+      "Angie's List":"Angie's List",
+      "BBB":"BBB",
+      "Carrier Dealer Locator":"Carrier Dealer Locator",
+      "Local 36":"Local 36",
+      "Bing":"Bing",
+      "Website":"Website",
+      "Internet":"Internet",
+      "Facebook":"Facebook",
+      "Ameren UE":"Ameren UE",
+      "Spire Gas":"Spire Gas",
+      "Other":"Other",
+      "Insurance / Real Estate":"Insurance / Real Estate",
+      "Diamond Construction":"Diamond Construction"
+    },
+    "comp":{
+      "VHC":"VHC",
+      "BEE":"BEE"
+    },
+    "time":{
+      "Daytime":"Daytime",
+      "Evening":"Evening",
+      "Weekend":"Weekend"
+    },
+    "prstvia":{
+      "Initial Visit":"Initial Visit",
+      "Follow-Up Visit":"Follow-Up Visit",
+      "Emailed":"Emailed",
+      "US Post":"US Post",
+      "Office":"Office"
     }
+
   }
 }

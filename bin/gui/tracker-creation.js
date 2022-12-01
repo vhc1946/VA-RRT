@@ -2,6 +2,7 @@ var vcontrol = require('../repo/gui/js/layouts/view-controller.js');
 var vgtables = require('../repo/gui/js/modules/vg-tables.js');
 
 var { FilterForm } = require('./filter-form.js');
+var { TrackerForm } = require('./tracker-form.js');
 
 var sumtracker = require('./sumtracker.js');
 var {GETtlist}= require('..//RRT-requests.js');
@@ -33,11 +34,6 @@ var tablemap = {
         }
     }
 }
-
-//trackmasterlist = null;
-//editform = new TrackerForm()
-
-//filtering
 
 var CREATEviews=(user)=>{ // Creates monthly views via tabbed view
     let moblock = document.getElementById('tracker-view-cont');
@@ -132,10 +128,9 @@ var FILLtop=(user)=>{  // Fills top summary sections
     cont.appendChild(CREATEsumtable(sumtracker.GENmetrics(list.comb),'Total'));
 }
 
-var CREATEpopups=()=>{
-  var filterform = new FilterForm(document.createElement('div'));  // Creates filter form contianer
-  document.getElementById('filter-popup').appendChild(filterform.cont);
-}
+var filterform = new FilterForm(document.createElement('div'),sumtracker.droplist);  // Creates filter form contianer
+document.getElementById('filter-popup').appendChild(filterform.cont);
+
 
 var SETUPuseryear = (user=null)=>{
   return new Promise((resolve,reject)=>{
@@ -144,7 +139,6 @@ var SETUPuseryear = (user=null)=>{
         console.log(data.body.result);
         sumtracker.SETsumtracker(data.body.result);
         CREATEviews(appuser);
-        CREATEpopups();
         FILLtop(appuser);
         return resolve(data.body.result);
       }

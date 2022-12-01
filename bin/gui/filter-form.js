@@ -1,10 +1,21 @@
 var { VHCform } = require("../repo/tools/box/vhc-forms.js");
 
 class FilterForm extends VHCform {
-    constructor(cont){
+    constructor(cont,droplist={}){
         super(cont);
         this.cont.innerHTML=this.content;
+        
         this.setinputs(this.dom.values);  // register input elements
+
+        for(let d in droplist){
+            for(let x=0;x<droplist[d].length;x++){
+              var ele = document.createElement('option');
+              ele.value = droplist[d][x];
+              ele.textContent=droplist[d][x];
+    
+              this.inputs[d].appendChild(ele);
+            }
+        }
     }
     dom={
         cont:"filter-cont",
@@ -32,7 +43,7 @@ class FilterForm extends VHCform {
                 <label>Client Name</label><input class="${this.dom.values.client}">
             </div>
             <div class="preview-area-appt">
-                <label>Time Ran</label><select class="${this.dom.values.time}"></select>
+                <label>Time Ran</label><input class="${this.dom.values.time}" type="search">
                 <label>Company</label><input class="${this.dom.values.comp}">
                 <label>Lead Source</label><select class="${this.dom.values.source}"></select>
                 <label>Rewards</label><input class="${this.dom.values.rewards}" type="checkbox">
