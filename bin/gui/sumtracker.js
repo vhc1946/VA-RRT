@@ -14,7 +14,7 @@ var currtab = '';
 // setup drop list
 var droplist = {
   cat:[],
-  time:['D','E','W']
+  time:['Day','Evening','Weekend']
 }
 for(let c in appset.reporting.categories){droplist.cat.push(c);} //add categories
 

@@ -6,7 +6,7 @@
 }
 
 /* Preview Box */
-.preview-header{
+.popup-header{
     background-color: var(--BEE-blue);
     color: var(--text-light);
     width:100%;

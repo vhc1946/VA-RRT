@@ -17,11 +17,8 @@ class TrackerForm extends VHCform{
         this.form = undefined;
         this.actions.save.title='insert';
       });
-
       this.actions.save.addEventListener('click',(ele)=>{this.submit(ele.target.title);});
-      this.actions.remove.addEventListener('click',(ele)=>{
-        this.submit('remove');
-      });
+      this.actions.remove.addEventListener('click',(ele)=>{this.submit('remove');});
 
       for(let d in droplist){
         for(let x=0;x<droplist[d].length;x++){
@@ -36,7 +33,7 @@ class TrackerForm extends VHCform{
 
     dom={
         cont:"preview-cont",
-        header:"preview-header",
+        header:"popup-header",
         values:{
             _id:"preview-value-id",
             client:"preview-value-client",
@@ -105,9 +102,9 @@ class TrackerForm extends VHCform{
             </div>
             <div class="preview-area-buttons">
                 <div class="${this.dom.values.estimator}"></div>
-                <img src="../bin/repo/assets/icons/disk.png" class="flat-action-button ${this.dom.actions.save}" title="insert"/>
-                <img src="../bin/repo/assets/icons/trash.png" class="flat-action-button ${this.dom.actions.remove}" title="delete"/>
-                <img src="../bin/repo/assets/icons/refresh-icon.png" class="flat-action-button ${this.dom.actions.clear}" title="clear"/>
+                <img src="../bin/repo/assets/icons/disk.png" class="sm-action-button ${this.dom.actions.save}" title="insert"/>
+                <img src="../bin/repo/assets/icons/trash.png" class="sm-action-button ${this.dom.actions.remove}" title="delete"/>
+                <img src="../bin/repo/assets/icons/refresh-icon.png" class="sm-action-button ${this.dom.actions.clear}" title="clear"/>
             </div>
         </div>
     </div>

@@ -10,8 +10,10 @@ var {usersls}=require('../bin/gui/storage/lstore.js');
 var creator = require('../bin/gui/tracker-creation.js');
 var appset = require('../app/settings.json');
 var { FINDparentele } = require('../bin/repo/gui/js/tools/vg-displaytools.js');
-
+var floatv = require('../bin/repo/gui/js/modules/vg-floatviews.js');
 var { EDITtracker } = require('../bin/gui/sumtracker.js');
+var qtrack = require('../bin/quote-tracking.js');
+
 
 //  TITLE BAR //////////////////////////////////////////////////////////
 try{
@@ -24,13 +26,13 @@ document.getElementById(Titlebar.tbdom.title).innerText = 'Lead Tracker';
 let qactions={
   new:{
     id:'new-lead',
-    src:'../bin/repo/assets/icons/open-new.png',
+    src:'../bin/repo/assets/icons/add-document.png',
     title:'New Lead'
   },
-  save:{
-    id:'save-leads',
-    src:'../bin/repo/assets/icons/disk.png',
-    title:'Save'
+  filter:{
+    id:'filter-leads',
+    src:'../bin/repo/assets/icons/filter.png',
+    title:'Filter'
   }
 }
 
@@ -57,11 +59,11 @@ Titlebar.ADDmactions(malist);
 document.getElementById(Titlebar.tbdom.page.user).addEventListener('click',(ele)=>{//GOTO LOGIN
   ipcRenderer.send(navroutes.gotologin,'Opening Login Dash...');
 });
-document.getElementById(qactions.save.id).addEventListener('dblclick',(ele)=>{
-  sumtracker.SAVEtrackers(trackerpath,trackerfile,appuser);
-});
 document.getElementById(qactions.new.id).addEventListener('dblclick',(ele)=>{
   EDITtracker();
+});
+document.getElementById(qactions.filter.id).addEventListener('dblclick',(ele)=>{
+  floatv.SELECTview(document.getElementById('preview-center'),'Filter Options'); // open filter box
 });
 document.getElementById('tracker-analytics').addEventListener('click', (ele)=>{
   ipcRenderer.send('analytics-page', 'Switching to Analytics...');
@@ -75,7 +77,7 @@ if(appset.users[appuser].group == "CONS"){
 }else{
   $(document.getElementById('tracker-commish')).show();
 }
-
+////////////////////////////////////////////////////////////////////////////////
 
 document.getElementById('tracker-tables').addEventListener('dblclick',(ele)=>{
   let lrow = FINDparentele(ele.target,'tracker-row');
@@ -86,19 +88,9 @@ document.getElementById('tracker-tables').addEventListener('dblclick',(ele)=>{
 
 // QUOTE SYNCING //
 
-var qtrack = require('../bin/quote-tracking.js');
+
 
 //var maintlist = new ObjList;
-
-/*
-Erik F
-Jeff V
-Grant V
-Ken W
-Jessica V
-*/
-var fs = require('fs');
-var path=require('path');
 
 creator.SETUPuseryear(appset.users[appuser].group!='MAN'?appset.users[appuser].name:undefined).then(
   list=>{
@@ -111,31 +103,5 @@ creator.SETUPuseryear(appset.users[appuser].group!='MAN'?appset.users[appuser].n
     )
   }
 );
-/*
-    for(let i=0;i<list.length;i++){
-      list[i].bookprc = (list[i].bookprc.toUpperCase() == "Y")?true:false;
-      list[i].finance = (list[i].finance.toUpperCase() == "Y")?true:false;
-      list[i].rewards = (list[i].rewards.toUpperCase() == "Y")?true:false;
 
-      list[i].estimator = list[i].cons;
-      delete list[i].cons;
 
-      for(let cat in list[i].amounts){
-        if(list[i].amounts[cat] > 0){
-          list[i].amount = list[i].amounts[cat];
-          list[i].cat = cat;
-          break;
-        }
-      }
-      delete list[i].amounts;
-
-      list[i] = qtrack.aqtrack(list[i]);
-
-    }
-
-    console.log("Converted> ",list);
-
-    fs.writeFile(path.join(__dirname,'../store/convertlist.json'),JSON.stringify(list),(err)=>{
-      console.log(err?err:'WAS filed');
-    });
-    */
