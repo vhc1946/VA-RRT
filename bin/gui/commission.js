@@ -8,6 +8,7 @@ var {aappuser} = require('../bin/repo/ds/users/vogel-users.js');
 var {usersls}=require('../bin/gui/storage/lstore.js');
 var vcontrol = require('../bin/repo/gui/js/layouts/view-controller.js');
 var appset = require('../app/settings.json');
+var creator = require('../bin/gui/tracker-creation.js');
 
 var sumtracker = require('../bin/gui/sumtracker.js');
 const { GETtlist } = require('../bin/RRT-requests.js');
@@ -89,7 +90,7 @@ var CREATEcommissions=()=>{
 GETtlist(appset.users[appuser].group!='MAN'?appset.users[appuser].name:undefined).then(
   data=>{
     console.log(data.body.result);
-    sumtracker.SETsumtracker(data.body.result);
+    creator.SETsumtracker(data.body.result);
     CREATEcommissions();
   }
 );
