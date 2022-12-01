@@ -136,3 +136,7 @@ ipcMain.on('put-user-tlist',(eve,data)=>{
   //Call save-tlist
   //Return result
 });
+
+ipcMain.on('get-user-tlist',(eve,data)=>{
+  
+});

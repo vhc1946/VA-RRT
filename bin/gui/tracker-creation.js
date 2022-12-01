@@ -11,24 +11,24 @@ var monum = ['01','02','03','04','05','06','07','08','09','10','11','12'];
 var today = new Date();
 
 var tableheaders = {
-      cons: "CONSULTANT",
+      estimator: "CONSULTANT",
       client: "CLIENT NAME",
       date: "DATE",
       zip: "ZIP",
       saletype: "SALE TYPE",
-      saleamount: "AMOUNT"
+      amount: "AMOUNT"
 }
 
 var tablemap = {
     MAIN:(r=null)=>{
         if(!r||r==undefined){console.log(r);r={}}
         return{
-        cons:r.cons||'',
+        estimator:r.estimator||'',
         client:r.client||'',
         date:r.date||'',
         zip:r.zip||'',
         saletype:r.saletype||'',
-        saleamount:r.saleamount||''
+        amount:r.amount||''
 
         }
     }
