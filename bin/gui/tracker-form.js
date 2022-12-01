@@ -36,6 +36,7 @@ class TrackerForm extends VHCform{
         header:"popup-header",
         values:{
             _id:"preview-value-id",
+            tag:"preview-value-tag",
             client:"preview-value-client",
             street:"preview-value-street",
             city:"preview-value-city",
@@ -71,6 +72,7 @@ class TrackerForm extends VHCform{
         <div class="preview-area-body">
             <div class="${this.dom.values._id}" style="display:none;"></div>
             <div class="preview-area-client">
+                <label>Quote Id</label><input class="${this.dom.values.tag}">
                 <label>Client Name</label><input class="${this.dom.values.client}">
                 <label>Client Street</label><input class="${this.dom.values.street}">
                 <label>Client City</label><input class="${this.dom.values.city}">

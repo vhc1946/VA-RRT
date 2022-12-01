@@ -119,6 +119,8 @@ ipcMain.on(navroutes.gotologin,(eve,data)=>{
   viewtools.swapper(mainv,controlsroot + 'login.html',1080,750);
 });
 
+
+
 ipcMain.on('analytics-page',(eve,data)=>{
   viewtools.swapper(mainv,controlsroot + 'analytics.html',1080,750);
 });
@@ -132,11 +134,3 @@ ipcMain.on('back-to-main',(eve,data)=>{
 });
 
 ///////////////////////////////////////////////////////////////
-ipcMain.on('put-user-tlist',(eve,data)=>{
-  //Call save-tlist
-  //Return result
-});
-
-ipcMain.on('get-user-tlist',(eve,data)=>{
-  
-});

@@ -34,6 +34,10 @@ var tablemap = {
     }
 }
 
+//trackmasterlist = null;
+//editform = new TrackerForm()
+
+//filtering
 
 var CREATEviews=(user)=>{ // Creates monthly views via tabbed view
     let moblock = document.getElementById('tracker-view-cont');

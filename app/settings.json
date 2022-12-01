@@ -53,52 +53,52 @@
       "iaq":{
         "descr":"IAQ",
         "paygroup":1
-      }, 
-      "option4":{ 
+      },
+      "option4":{
         "descr":"Option 4",
         "paygroup":1
-       }, 
-      "option3":{ 
+       },
+      "option3":{
         "descr":"Option 3",
         "paygroup":1
-       }, 
-      "option2":{ 
+       },
+      "option2":{
         "descr":"Option 2",
         "paygroup":2
-      }, 
-      "option1":{ 
+      },
+      "option1":{
         "descr":"Option 1",
         "paygroup":3
-      }, 
-      "boiler":{ 
+      },
+      "boiler":{
         "descr":"Boilers",
         "paygroup":2
-      }, 
-      "cutin":{ 
+      },
+      "cutin":{
         "descr":"Cut-In",
         "paygroup":1
-      }, 
-      "desbuild":{ 
+      },
+      "desbuild":{
         "descr":"Design/Build",
         "paygroup":1
-      }, 
-      "windows":{ 
+      },
+      "windows":{
         "descr":"Windows",
         "paygroup":0
-      }, 
-      "doors":{ 
+      },
+      "doors":{
         "descr":"Doors",
         "paygroup":0
-      }, 
-      "gblock":{ 
+      },
+      "gblock":{
         "descr":"Glass Block",
         "paygroup":0
-      }, 
-      "insul":{ 
+      },
+      "insul":{
         "descr":"Insulation",
         "paygroup":0
       },
-      "repair":{ 
+      "repair":{
         "descr":"Repairs",
         "paygroup":1
       }
