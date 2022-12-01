@@ -18,6 +18,7 @@ try{
   var appuser = JSON.parse(localStorage.getItem(usersls.curruser)).uname;
   document.getElementById(Titlebar.tbdom.info.username).innerText = appuser;
 }catch{}
+
 document.getElementById(Titlebar.tbdom.title).innerText = 'Lead Tracker';
 
 let qactions={
@@ -59,11 +60,12 @@ document.getElementById(Titlebar.tbdom.page.user).addEventListener('click',(ele)
 document.getElementById(qactions.save.id).addEventListener('dblclick',(ele)=>{
   sumtracker.SAVEtrackers(trackerpath,trackerfile,appuser);
 });
-
+document.getElementById(qactions.new.id).addEventListener('dblclick',(ele)=>{
+  EDITtracker();
+});
 document.getElementById('tracker-analytics').addEventListener('click', (ele)=>{
   ipcRenderer.send('analytics-page', 'Switching to Analytics...');
 });
-
 document.getElementById('tracker-commish').addEventListener('click', (ele)=>{
   ipcRenderer.send('commish-page', 'Switching to Commissions...');
 });

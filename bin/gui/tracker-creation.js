@@ -2,8 +2,6 @@ var vcontrol = require('../repo/gui/js/layouts/view-controller.js');
 var vgtables = require('../repo/gui/js/modules/vg-tables.js');
 
 var sumtracker = require('./sumtracker.js');
-var { trackerform } = require('./tracker-form.js');
-
 var {GETtlist}= require('..//RRT-requests.js');
 
 var molist = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
@@ -33,10 +31,7 @@ var tablemap = {
         }
     }
 }
-var CREATEpreview=()=>{
-  let tform = new trackerform(document.createElement('div'));
-  document.getElementById('preview-popup').appendChild(tform.cont);
-}
+
 
 var CREATEviews=(user)=>{ // Creates monthly views via tabbed view
     let moblock = document.getElementById('tracker-view-cont');
@@ -121,7 +116,6 @@ var FILLtab=(tab, user)=>{  // Fills each tab with proper table
     cont.appendChild(CREATEsumtable(sumtracker.GENmetrics(list.comb),'Total'));
 }
 
-
 var FILLtop=(user)=>{  // Fills top summary sections
     let list={vhc:[],bee:[],comb:[]};
     let cont = document.getElementById('report-area-metrics-yearly');
@@ -140,7 +134,6 @@ var SETUPuseryear = (user=null)=>{
         sumtracker.SETsumtracker(data.body.result);
         CREATEviews(appuser);
         FILLtop(appuser);
-        CREATEpreview();
         return resolve(data.body.result);
       }
     );

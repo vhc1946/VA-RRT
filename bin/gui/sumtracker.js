@@ -1,7 +1,7 @@
 var {ObjList}=require('../repo/tools/box/vg-lists.js');
 var appset = require('../../app/settings.json');
 var floatv = require('../repo/gui/js/modules/vg-floatviews.js');
-var { trackerform } = require('./tracker-form.js');
+var { TrackerForm } = require('./tracker-form.js');
 
 var asumtracker = null;
 
@@ -11,19 +11,29 @@ var SETsumtracker=(array)=>{
 var index = 0;
 var currtab = '';
 
-var EDITtracker=(lrow)=>{
-  for(let i=0;i<asumtracker.list.length;i++){
-    if(asumtracker.list[i].client == lrow.children[1].innerText){
-      index = i;
-      currtab = lrow.parentNode.parentNode.id;
-      break;
+// setup drop list
+var droplist = {
+  cat:[],
+  time:['D','E','W']
+}
+for(let c in appset.reporting.categories){droplist.cat.push(c);} //add categories
+
+/////////////////
+var editform = new TrackerForm(document.createElement('div'),droplist);
+
+document.getElementById('preview-popup').appendChild(editform.cont);
+var EDITtracker=(lrow=null)=>{
+  if(lrow){
+    for(let i=0;i<asumtracker.list.length;i++){
+      if(asumtracker.list[i].client == lrow.children[1].innerText){
+        index = i;
+        currtab = lrow.parentNode.parentNode.id;
+        break;
+      }
     }
-  }
-  for(let i in asumtracker.list[index]){
-    if(document.getElementById(`preview-value-${i}`)){
-      document.getElementById(`preview-value-${i}`).value = asumtracker.list[index][i];
-    }
-  }
+    console.log(asumtracker.list[index])
+    editform.loadform(asumtracker.list[index]);
+  }else{editform.loadform(undefined);}
   floatv.SELECTview(document.getElementById('preview-center'),'Lead Overview');//open lead preview
 }
 
@@ -131,7 +141,7 @@ var GENcommish=(list)=>{
   }
 
   let ctable = appset.reporting.commishtable;
-  
+
   for(let x=0;x<ctable.closerates.length;x++){
     if(metrics.close < ctable.closerates[x].rate){
       for(let y=0;y<ctable.paygroups.length;y++){

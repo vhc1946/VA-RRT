@@ -9,7 +9,7 @@ var mquotes = path.join(__dirname,'../store/masterquotes.db')//path.join(rrstore
 var aqtrack=(qt={})=>{
   if(!qt){qt={};}
   return{
-    __id:qt.__id||undefined,
+    _id:qt._id&&qt._id!=''?qt._id:undefined,
     tag:qt.tag||'',
     client:qt.client||'',
     email:qt.email||'',
@@ -23,19 +23,19 @@ var aqtrack=(qt={})=>{
     estimator:qt.estimator||'',
     date:qt.date||new Date().toISOString().split('T')[0],
 
-    finance:qt.finance||false,
-    bookprc:qt.boodprc||true,
-    rewards:qt.rewards||false,
+    finance:qt.finance!=undefined?qt.finance:false,
+    bookprc:qt.bookprc!=undefined?qt.bookprc:true,
+    rewards:qt.rewards!=undefined?qt.rewards:false,
     saletype:qt.saletype||'', //Full Component Other
     lead:qt.lead||'', // [list sourced from vapi]
     source:qt.source||'', // [list sourced from vapi]
-    sold:qt.sold||false,
+    sold:qt.sold!=undefined?qt.sold:false,
     cat:qt.cat||'', // [list sourced from vapi]
     amount:qt.amount||0,
 
     prstvia:qt.prstvia||'',
     prstdate:qt.prstdate||null,
-    sold:qt.sold||false,
+    sold:qt.sold!=undefined?qt.sold:false,
     time:qt.time||null
 
   }
