@@ -39,6 +39,7 @@ class TrackerForm extends VHCform{
         header:"preview-header",
         values:{
             _id:"preview-value-id",
+            tag:"preview-value-tag",
             client:"preview-value-client",
             street:"preview-value-street",
             city:"preview-value-city",
@@ -74,6 +75,7 @@ class TrackerForm extends VHCform{
         <div class="preview-area-body">
             <div class="${this.dom.values._id}" style="display:none;"></div>
             <div class="preview-area-client">
+                <label>Quote Id</label><input class="${this.dom.values.tag}">
                 <label>Client Name</label><input class="${this.dom.values.client}">
                 <label>Client Street</label><input class="${this.dom.values.street}">
                 <label>Client City</label><input class="${this.dom.values.city}">
@@ -105,9 +107,9 @@ class TrackerForm extends VHCform{
             </div>
             <div class="preview-area-buttons">
                 <div class="${this.dom.values.estimator}"></div>
-                <img src="../bin/repo/assets/icons/disk.png" class="flat-action-button ${this.dom.actions.save}" title="insert"/>
-                <img src="../bin/repo/assets/icons/trash.png" class="flat-action-button ${this.dom.actions.remove}" title="delete"/>
-                <img src="../bin/repo/assets/icons/refresh-icon.png" class="flat-action-button ${this.dom.actions.clear}" title="clear"/>
+                <img src="../bin/repo/assets/icons/disk.png" class="sm-action-button ${this.dom.actions.save}" title="insert"/>
+                <img src="../bin/repo/assets/icons/trash.png" class="sm-action-button ${this.dom.actions.remove}" title="delete"/>
+                <img src="../bin/repo/assets/icons/refresh-icon.png" class="sm-action-button ${this.dom.actions.clear}" title="clear"/>
             </div>
         </div>
     </div>

@@ -4,13 +4,13 @@ var floatv = require('../repo/gui/js/modules/vg-floatviews.js');
 var { TrackerForm } = require('./tracker-form.js');
 
 var asumtracker = null;
-
-var SETsumtracker=(array)=>{
-  asumtracker = new ObjList(array);
-}
 var index = 0;
 var currtab = '';
 
+var SETsumtracker=(array)=>{
+  if(asumtracker){asumtracker.SETlist(array);}
+  else{asumtracker = new ObjList(array);}
+}
 // setup drop list
 var droplist = {
   cat:[],
@@ -20,8 +20,8 @@ for(let c in appset.reporting.categories){droplist.cat.push(c);} //add categorie
 
 /////////////////
 var editform = new TrackerForm(document.createElement('div'),droplist);
-
 document.getElementById('preview-popup').appendChild(editform.cont);
+
 var EDITtracker=(lrow=null)=>{
   if(lrow){
     for(let i=0;i<asumtracker.list.length;i++){
