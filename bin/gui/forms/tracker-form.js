@@ -119,8 +119,8 @@ class TrackerForm extends VHCform{
             <div class="preview-area-buttons">
                 <div class="${this.dom.values.estimator}"></div>
                 <div class="sm-action-button"><img class="${this.dom.actions.save}" src="../bin/repo/assets/icons/disk.png"/></div>
-                <div class="sm-action-button"><img class="${this.dom.actions.remove}" src="../bin/repo/assets/icons/trash.png"/></div>
-                <div class="sm-action-button"><img class="${this.dom.actions.clear}" src="../bin/repo/assets/icons/refresh-icon.png"/></div>
+                <div class="sm-action-button" title="Remove"><img class="${this.dom.actions.remove}" src="../bin/repo/assets/icons/trash.png"/></div>
+                <div class="sm-action-button" title="Clear"><img class="${this.dom.actions.clear}" src="../bin/repo/assets/icons/refresh-icon.png"/></div>
             </div>
         </div>
     </div>
