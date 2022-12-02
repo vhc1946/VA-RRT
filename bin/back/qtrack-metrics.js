@@ -31,6 +31,7 @@ var ametric=(am={})=>{
 
 var GENmetrics=(list,paygroups=appset.reporting.commishtable.paygroups,categories=appset.reporting.categories)=>{  // Generates metrics
   let metrics = ametric();
+  let qwinlose = {};
 
   for(let x=0;x<paygroups.length;x++){
     metrics.commish[paygroups[x].toLowerCase()]={
@@ -66,14 +67,17 @@ var GENmetrics=(list,paygroups=appset.reporting.commishtable.paygroups,categorie
       }
     }
 
-    if (list[x].prstdate != '' && list[x].prstdate != ' '){   // totals number of leads ran
-      metrics.leads++;
-    }
-    if (list[x].saletype != '' && list[x].saletype != ' '){   // totals number of wins
-      metrics.wins++;
+    if(!qwinlose[list[x].tag]){qwinlose[list[x].tag]=false;}
+    if (list[x].sold){   // totals number of wins
+      qwinlose[list[x].tag]=true;
     }
   }
-
+  //figure wins and loses
+  for(let wl in qwinlose){
+    metrics.leads++;
+    if(qwinlose[wl]){metrics.wins++;}
+  }
+  
   if (metrics.leads != 0){  // calculates RPO and close %
     metrics.rpo = (metrics.rev / metrics.leads).toFixed(2);
     metrics.close = ((metrics.wins / metrics.leads) * 100).toFixed(1);

@@ -117,6 +117,7 @@ var STARTtrackquotes = (ulist)=>{
         city:ulist[x].city,
         estimator:ulist[x].estimator,
         zip:ulist[x].zip,
+        date:ulist[x].opendate,
         cat:'system'
       }));
     }

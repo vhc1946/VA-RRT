@@ -160,7 +160,30 @@ var droplist = {
 for(let list in droplist){
   for(let c in appset.reporting[list]){droplist[list].push(c);}
 }
-var editform = new TrackerForm(document.createElement('div'),droplist);
+var editform = new TrackerForm(document.createElement('div'),droplist,(action,doc=null)=>{
+  console.log(asumtracker.list.length);
+  switch(action){
+    case 'remove':{
+      let tlist = [];
+      for(let x=0;x<asumtracker.list.length;x++){
+        if(x!=index){tlist.push(asumtracker.list[x])}
+      }
+      asumtracker.list=tlist;
+      break;
+    }
+    case 'insert':{
+      if(doc){asumtracker.list.push(doc);}
+      break;
+    }
+    case 'update':{
+      console.log(asumtracker.list[index]);
+      console.log(editform.form);
+      asumtracker.list[index]=editform.form;
+    }
+  }
+  console.log(asumtracker.list.length);
+  CREATEviews(true);
+});
 document.getElementById('preview-popup').appendChild(editform.cont);
 
 var filterform = new FilterForm(document.createElement('div'),droplist);  // Creates filter form contianer
@@ -170,6 +193,7 @@ filterform.actions.submit.addEventListener('click',(ele)=>{
   CREATEviews(true);
   floatv.RESETframe(document.getElementById('preview-center'));
 });
+
 ////////////////////////////////////////////////////////////////////////
 
 var SETsumtracker=(array)=>{

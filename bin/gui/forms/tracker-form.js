@@ -5,7 +5,7 @@ var {DropNote}=require('../../repo/gui/js/modules/vg-poppers.js');
 var {aqtrack}=require('../../back/quote-tracking.js');
 
 class TrackerForm extends VHCform{
-    constructor(cont,droplist={}){
+    constructor(cont,droplist={},rfrsh=()=>{}){
       super(cont);
       this.cont.innerHTML=this.content;
 
@@ -19,8 +19,12 @@ class TrackerForm extends VHCform{
         this.form = undefined;
         this.actions.save.title='insert';
       });
-      this.actions.save.addEventListener('click',(ele)=>{this.submit(ele.target.title);});
-      this.actions.remove.addEventListener('click',(ele)=>{this.submit('remove');});
+      this.actions.save.addEventListener('click',(ele)=>{
+        this.submit(ele.target.title).then(doc=>{if(doc){rfrsh(ele.target.title,doc)}});
+      });
+      this.actions.remove.addEventListener('click',(ele)=>{
+        this.submit('remove').then(doc=>{console.log(doc);if(doc){rfrsh('remove',doc)}});
+      });
 
       for(let d in droplist){
         for(let x=0;x<droplist[d].length;x++){
@@ -121,61 +125,66 @@ class TrackerForm extends VHCform{
     }
 
     submit(action){
-      if(this.validate()){
-        let opts = null;
-        DropNote('tr',`${action}ing item`,'green');
-        switch(action){
-          case 'insert':{
-            opts={
-              docs:aqtrack(this.form)
+      return new Promise((resolve,reject)=>{
+        if(this.validate()){
+          let opts = null;
+          DropNote('tr',`${action}ing item`,'green');
+          switch(action){
+            case 'insert':{
+              opts={
+                docs:aqtrack(this.form)
+              }
+              break;
             }
-            break;
-          }
-          case 'remove':{
-            opts={
-              query:{_id:this.form._id},
-              multi:false
+            case 'remove':{
+              opts={
+                query:{_id:this.form._id},
+                multi:false
+              }
+              break;
             }
-            break;
-          }
-          case 'update':{
-            opts={
-              query:{_id:this.form._id},
-              update:{$set:aqtrack(this.form)},
-              options:{multi:false}
-            }
-          }
-        }
-        if(opts){
-          SENDrequestapi({
-            collect:'apps',
-            store:'SUMTRACKER',
-            db:'mtracker',
-            method:action,
-            options:opts
-          }).then(
-            res=>{
-              if(!res.body.result.err){
-                DropNote('tr',`item was ${action}ed`,'green');
-                switch(action){
-                  case 'remove':{
-                    this.form=undefined;
-                    this.actions.save.title='insert';
-                    break;
-                  }
-                  case 'insert':{this.actions.save.title='update';break;}
-                }
-              }else{
-                DropNote('tr',`item was not ${action}ed`,'yellow');
-                switch(action){
-                  case 'insert':{this.actions.save.title='update';}
-                  case 'update':{this.actions.save.title='insert';}
-                }
+            case 'update':{
+              opts={
+                query:{_id:this.form._id},
+                update:{$set:aqtrack(this.form)},
+                options:{multi:false}
               }
             }
-          )
-        }else{console.log('Bad method for server')}
-      }else{console.log('Form Inputs are Bad')}
+          }
+          if(opts){
+            SENDrequestapi({
+              collect:'apps',
+              store:'SUMTRACKER',
+              db:'mtracker',
+              method:action,
+              options:opts
+            }).then(
+              res=>{
+                console.log(res);
+                if(!res.body.result.err){
+                  DropNote('tr',`item was ${action}ed`,'green');
+                  switch(action){
+                    case 'remove':{
+                      this.form=undefined;
+                      this.actions.save.title='insert';
+                      break;
+                    }
+                    case 'insert':{this.actions.save.title='update';break;}
+                  }
+                  return resolve(res.body.result.doc||'empty');
+                }else{
+                  DropNote('tr',`item was not ${action}ed`,'yellow');
+                  switch(action){
+                    case 'insert':{this.actions.save.title='update';}
+                    case 'update':{this.actions.save.title='insert';}
+                  }
+                  return resolve(false);
+                }
+              }
+            )
+          }else{console.log('Bad method for server');return resolve(false);}
+        }else{console.log('Form Inputs are Bad');return resolve(false);}
+      })
     }
 }
 
