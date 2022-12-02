@@ -1,5 +1,5 @@
 const {ipcRenderer} = require('electron');
-var {DropNote} = require ('../bin/repo/gui/js/modules/vg-poppers.js');
+var {DropNote} = require ('../bin/repo/gui/js/modules/vg-dropnote.js');
 
 var {loginroutes}=require('../bin/routes.js');
 var {usersls}=require('../bin/gui/storage/lstore.js');

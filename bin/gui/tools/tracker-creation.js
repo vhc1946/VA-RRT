@@ -71,6 +71,8 @@ var CREATEviews=(reset=false)=>{ // Creates monthly views via tabbed view
       }
       moblock.getElementsByClassName(vcontrol.vcdom.menu.cont)[0].children[0].children[today.getMonth() + 1].click(); //fires a click event to activate this month's tab
     }
+    
+    FILLtop();
 
     let port = moblock.getElementsByClassName(vcontrol.vcdom.port.cont)[0].children;
     for(let x=0;x<port.length;x++){FILLtab(port[x].id);}
@@ -128,7 +130,7 @@ var FILLtab=(tab)=>{  // Fills each tab with proper table
 
     let cont = document.getElementById(tab).getElementsByClassName(vgtables.gtdom.table)[0];
     cont.innerHTML = '';
-    vgtables.BUILDdistable([].concat(tableheaders,list.comb),cont,true,'tracker-row',tablemap['MAIN']);
+    vgtables.BUILDtruetable([].concat(tableheaders,list.comb),cont,true,'tracker-row',tablemap['MAIN']);
 
     cont = document.getElementById(tab).getElementsByClassName('monthly-metrics')[0];
     cont.innerHTML = '';
@@ -232,7 +234,6 @@ var SETUPuseryear = (user=null)=>{
       data=>{
         SETsumtracker(data.body.result);
         CREATEviews();
-        FILLtop();
         return resolve(data.body.result);
       }
     );

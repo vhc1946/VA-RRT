@@ -3,7 +3,6 @@ var {ipcRenderer}=require('electron');
 var appset = require('../app/settings.json');
 var RROOT='../bin/repo/';
 var Titlebar = require('../bin/repo/gui/js/modules/vg-titlebar.js');
-var {DropNote}=require('../bin/repo/gui/js/modules/vg-poppers.js');
 var {aappuser} = require('../bin/repo/ds/users/vogel-users.js');
 var vcontrol = require('../bin/repo/gui/js/layouts/view-controller.js');
 

@@ -1,6 +1,6 @@
 var {VHCform} = require("../../repo/tools/box/vhc-forms.js");
 var {SENDrequestapi}=require('../../repo/apis/vapi/vapicore.js');
-var {DropNote}=require('../../repo/gui/js/modules/vg-poppers.js');
+var {DropNote}=require('../../repo/gui/js/modules/vg-dropnote.js');
 
 var {aqtrack}=require('../../back/quote-tracking.js');
 

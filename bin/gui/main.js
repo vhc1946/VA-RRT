@@ -4,7 +4,7 @@ var appset = require('../app/settings.json');
 
 var RROOT='../bin/repo/';
 var Titlebar = require('../bin/repo/gui/js/modules/vg-titlebar.js');
-var {DropNote}=require('../bin/repo/gui/js/modules/vg-poppers.js');
+var {DropNote}=require('../bin/repo/gui/js/modules/vg-dropnote.js');
 var {FINDparentele} = require('../bin/repo/gui/js/tools/vg-displaytools.js');
 var floatv = require('../bin/repo/gui/js/modules/vg-floatviews.js');
 var {aappuser} = require('../bin/repo/ds/users/vogel-users.js');
