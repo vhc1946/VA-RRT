@@ -159,6 +159,7 @@ class TrackerForm extends VHCform{
               }
             }
           }
+          console.log(opts);
           if(opts){
             SENDrequestapi({
               collect:'apps',
@@ -195,5 +196,7 @@ class TrackerForm extends VHCform{
       })
     }
 }
+
+console.log(Number(' '));
 
 module.exports={TrackerForm}

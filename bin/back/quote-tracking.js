@@ -33,7 +33,7 @@ var aqtrack=(qt={})=>{
     source:qt.source||'', // [list sourced from vapi]
     sold:qt.sold!=undefined?qt.sold:false,
     cat:qt.cat||'', // [list sourced from vapi]
-    amount:qt.amount||0,
+    amount:Number(qt.amount)||0,
 
     prstvia:qt.prstvia||'',
     prstdate:qt.prstdate||null,

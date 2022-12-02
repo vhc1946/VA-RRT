@@ -52,21 +52,9 @@ var GENmetrics=(list,paygroups=appset.reporting.commishtable.paygroups,categorie
 
   for(let x=0;x<list.length;x++){
 
-    for(let key in list[x].amounts){
-      metrics.opts[key].total = metrics.opts[key].total + list[x].amounts[key];  // total for each option
-      metrics.rev = metrics.rev + list[x].amounts[key];  // total revenue
-      if(list[x].amounts[key]>0){  // counts each sale option
-        metrics.opts[key].count++;
-      }
-      if(list[x].source == "DR"){  // totals Direct Refferal amounts
-        metrics.direct.sales = metrics.direct.sales + list[x].amounts[key];
-      }
-      if(list[x].bookprc.toUpperCase() != 'Y' && list[x].amounts[key] > 0){  // totals and counts non-Book Price sales
-        metrics.opts[key].spec = metrics.opts[key].spec + list[x].amounts[key];
-        metrics.book.count++;
-      }
+    if(list[x].sold){
+      metrics.rev = metrics.rev + Number(list[x].amount);
     }
-
     if(!qwinlose[list[x].tag]){qwinlose[list[x].tag]=false;}
     if (list[x].sold){   // totals number of wins
       qwinlose[list[x].tag]=true;
