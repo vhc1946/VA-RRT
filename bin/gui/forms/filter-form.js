@@ -11,18 +11,20 @@ class FilterForm extends VHCform {
 
         console.log(this.actions);
         for(let d in droplist){
-            let ele = document.createElement('option');
-            ele.value = " ";
-            ele.textContent= " ";
+            if(this.inputs[d]){
+                let ele = document.createElement('option');
+                ele.value = " ";
+                ele.textContent= " ";
 
-            this.inputs[d].appendChild(ele);
+                this.inputs[d].appendChild(ele);
 
-            for(let x=0;x<droplist[d].length;x++){
-              let ele = document.createElement('option');
-              ele.value = droplist[d][x];
-              ele.textContent=droplist[d][x];
+                for(let x=0;x<droplist[d].length;x++){
+                let ele = document.createElement('option');
+                ele.value = droplist[d][x];
+                ele.textContent=droplist[d][x];
 
-              this.inputs[d].appendChild(ele);
+                this.inputs[d].appendChild(ele);
+                }
             }
         }
     }
@@ -34,6 +36,7 @@ class FilterForm extends VHCform {
             time:"filter-value-time",
             comp:"filter-value-comp",
             source:"filter-value-source",
+            lead:"filter-value-lead",
             rewards:"filter-value-rewards",
             prstvia:"filter-value-prstvia",
             financed:"filter-value-financed",
@@ -55,11 +58,9 @@ class FilterForm extends VHCform {
                 <label>Time Ran</label><select class="${this.dom.values.time}"></select>
                 <label>Company</label><select class="${this.dom.values.comp}"></select>
                 <label>Lead Source</label><select class="${this.dom.values.source}"></select>
-                <label>Rewards</label><input class="${this.dom.values.rewards}" type="checkbox">
                 <label>Preseted Via</label><select class="${this.dom.values.prstvia}"></select>
             </div>
             <div class="preview-area-sale">
-                <label>Financed</label><input class="${this.dom.values.finance}" type="checkbox">
                 <label>Sale Type</label><select class="${this.dom.values.saletype}"></select>
                 <label>Category</label><select class="${this.dom.values.cat}"></select>
             </div>

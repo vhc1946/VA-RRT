@@ -150,6 +150,7 @@ var FILLtop=()=>{  // Fills top summary sections
 var droplist = {
   cat:[],
   source:[],
+  lead:[],
   comp:[],
   time:[],
   prstvia:[],

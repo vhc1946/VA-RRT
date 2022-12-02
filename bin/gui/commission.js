@@ -90,7 +90,7 @@ var CREATEcommissions=()=>{
 GETtlist(appset.users[appuser].group!='MAN'?appset.users[appuser].name:undefined).then(
   data=>{
     console.log(data.body.result);
-    sumtracker.SETsumtracker(data.body.result);
+    creator.SETsumtracker(data.body.result);
     CREATEcommissions();
   }
 );
