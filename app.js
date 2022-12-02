@@ -36,12 +36,12 @@ var mainv; //holds the main BrowserWindow
 
 
 
+    /*
 require('dns').resolve('www.google.com',(err)=>{ //test for internet connection
   if(err){//is not connected
   }
   else{//is connected
     console.log('IS online...')
-    /*
     GETtlist().then(
       result=>{
         if(result.data.success){
@@ -52,9 +52,9 @@ require('dns').resolve('www.google.com',(err)=>{ //test for internet connection
         }
       }
     );
-    */
   }
 });
+    */
 
 // Request user list
 // Call to Save

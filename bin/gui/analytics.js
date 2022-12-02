@@ -81,9 +81,6 @@ var FILLanalytics=(user)=>{  // Fills each analytics view
 var CREATEanasummary=(comp, user)=>{    // Creates Overall Summary Analytics tables
     let list={vhc:[],bee:[],comb:[]};
     list = sumtracker.GENlists(list,user);
-
-    console.log(user);
-
     let yrana = sumtracker.GENanalytics(list[comp]);
 
     let spot = document.createElement('div');

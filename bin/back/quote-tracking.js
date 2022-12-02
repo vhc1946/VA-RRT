@@ -2,9 +2,10 @@ var path = require('path');
 var {auser} = require('../appuser.js'); //initialize the app user object
 var apaths = require('../../app/paths.json');
 var {NEDBconnect}=require('../repo/tools/box/nedb-connector.js');
+var {PUTtlist}=require('./RRT-requests.js');
 
 var rrstore = path.join(auser.cuser.spdrive,apaths.deproot,apaths.store.root);
-var mquotes = path.join(__dirname,'../store/masterquotes.db')//path.join(rrstore,apaths.store.mquotes);
+var mquotes = path.join(__dirname,'../../store/masterquotes.db')//path.join(rrstore,apaths.store.mquotes);
 
 var aqtrack=(qt={})=>{
   if(!qt){qt={};}
@@ -50,8 +51,8 @@ var quotes = new NEDBconnect(mquotes);
 var GETuntrackedquotes = (tlist,cons=undefined)=>{
   return new Promise((resolve,reject)=>{
     quotes.QUERYdb(cons?{estimator:cons}:cons).then(
-      res=>{
-        let arr = res.err?[]:res.docs; //list of quotes
+      result=>{
+        let arr = result.err?[]:result.docs; //list of quotes
         let utlist = []; //list of untracked quotes
         for(let x=0,l=arr.length;x<l;x++){
           let found = false;
@@ -69,6 +70,28 @@ var GETuntrackedquotes = (tlist,cons=undefined)=>{
   })
 }
 
+var CHECKquotechanges = (qlist,cons=undefined)=>{
+  return new Promise((resolve,reject)=>{
+    quotes.QUERYdb(cons?{estimator:cons}:cons).then(
+      result=>{
+        let arr=result.err?[]:result.docs;
+        console.log(arr);
+        let ctlist=[];//changes
+        for(let x=0,l=arr.length;x<l;x++){
+          for(let y=0,ll=qlist.length;y<ll;y++){
+            if(arr[x].id===qlist.tag){
+              if((arr[x].sold&&!qlist.sold) || (!arr[x].sold&&qlist.sold)){
+                ctlist.push(arr[x]);
+                break;
+              }
+            }
+          }
+        }
+        return resolve(ctlist);
+      }
+    )
+  })
+}
 /* Start Tracking Quotes
   Takes a list of user quotes and adds them to the users tracked quotes. These
   quotes will be updated in the tracker when the quote is updated elsewhere.
@@ -98,7 +121,7 @@ var STARTtrackquotes = (ulist)=>{
       }));
     }
   }
-  return tlist;
+  return PUTtlist(tlist);
 }
 
 /*
@@ -118,6 +141,7 @@ var CREATEquotetrack=()=>{
 */
 
 module.exports={
+  CHECKquotechanges,
   GETuntrackedquotes,
   STARTtrackquotes,
   aqtrack

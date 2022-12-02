@@ -1,5 +1,7 @@
 var {VHCform} = require("../../repo/tools/box/vhc-forms.js");
 var {SENDrequestapi}=require('../../repo/apis/vapi/vapicore.js');
+var {DropNote}=require('../../repo/gui/js/modules/vg-poppers.js');
+
 var {aqtrack}=require('../../back/quote-tracking.js');
 
 class TrackerForm extends VHCform{
@@ -121,6 +123,7 @@ class TrackerForm extends VHCform{
     submit(action){
       if(this.validate()){
         let opts = null;
+        DropNote('tr',`${action}ing item`,'green');
         switch(action){
           case 'insert':{
             opts={
@@ -143,7 +146,6 @@ class TrackerForm extends VHCform{
             }
           }
         }
-        console.log(this.form);
         if(opts){
           SENDrequestapi({
             collect:'apps',
@@ -153,11 +155,10 @@ class TrackerForm extends VHCform{
             options:opts
           }).then(
             res=>{
-              console.log(res);
-              if(res.success){
+              if(!res.body.result.err){
+                DropNote('tr',`item was ${action}ed`,'green');
                 switch(action){
                   case 'remove':{
-                    console.log('remove')
                     this.form=undefined;
                     this.actions.save.title='insert';
                     break;
@@ -165,6 +166,7 @@ class TrackerForm extends VHCform{
                   case 'insert':{this.actions.save.title='update';break;}
                 }
               }else{
+                DropNote('tr',`item was not ${action}ed`,'yellow');
                 switch(action){
                   case 'insert':{this.actions.save.title='update';}
                   case 'update':{this.actions.save.title='insert';}

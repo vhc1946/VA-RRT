@@ -30,7 +30,7 @@ var tableheaders = {
 
 var tablemap = {
     MAIN:(r=null)=>{
-        if(!r||r==undefined){console.log(r);r={}}
+        if(!r||r==undefined){r={}}
         return{
         _id:r._id||'',
         estimator:r.estimator||'',
@@ -194,7 +194,6 @@ var EDITtracker=(lrow=null)=>{
 
 var GENlists=(list,date=null)=>{
   let data=new ObjList(asumtracker.TRIMlist(filterform.filterform));
-  console.log(data.list)
   list.vhc = list.vhc.concat(data.TRIMlist({comp:'VHC', date:date}, date?true:false));
   list.bee = list.bee.concat(data.TRIMlist({comp:'BEE', date:date}, date?true:false));
   list.comb = list.bee.concat(data.TRIMlist({ date:date}, date?true:false));
@@ -205,7 +204,6 @@ var SETUPuseryear = (user=null)=>{
   return new Promise((resolve,reject)=>{
     GETtlist(user).then(
       data=>{
-        console.log(data.body.result);
         SETsumtracker(data.body.result);
         CREATEviews();
         FILLtop();

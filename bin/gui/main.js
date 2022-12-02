@@ -89,11 +89,23 @@ document.getElementById('tracker-tables').addEventListener('dblclick',(ele)=>{
 //var maintlist = new ObjList;
 creator.SETUPuseryear(appset.users[appuser].group!='MAN'?appset.users[appuser].name:undefined).then(
   list=>{
-    console.log('User List: ',list);
-    qtrack.GETuntrackedquotes(list,'VOGCH').then(
+    //check for updates
+    console.log(list);
+    qtrack.CHECKquotechanges(list,appset.users[appuser].group!='MAN'?appset.users[appuser].name:undefined).then(
       ulist=>{
-        console.log('Untracked List: ',ulist);
-        console.log(qtrack.STARTtrackquotes(ulist));
+        //display quotes that
+        console.log('CHANGED LIST> ',ulist);
+      }
+    )
+    qtrack.GETuntrackedquotes(list,appset.users[appuser].group!='MAN'?appset.users[appuser].name:undefined).then(
+      ulist=>{
+        //display list of quotes to be tracked
+        qtrack.STARTtrackquotes(ulist).then(
+          res=>{
+            if(res&&res.err){DropNote('tr','Quotes did not Sync','yellow');console.log(res.err);}
+            else{DropNote('tr','Quotes have Synced','green');}
+          }
+        );
       }
     )
   }

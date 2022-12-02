@@ -9,7 +9,6 @@ class FilterForm extends VHCform {
 
         this.actions.submit = this.cont.getElementsByClassName(this.dom.actions.submit)[0];
 
-        console.log(this.actions);
         for(let d in droplist){
             if(this.inputs[d]){
                 let ele = document.createElement('option');
@@ -37,9 +36,7 @@ class FilterForm extends VHCform {
             comp:"filter-value-comp",
             source:"filter-value-source",
             lead:"filter-value-lead",
-            rewards:"filter-value-rewards",
             prstvia:"filter-value-prstvia",
-            financed:"filter-value-financed",
             saletype:"filter-value-saletype",
             cat:"filter-value-cat"
         },
@@ -53,11 +50,13 @@ class FilterForm extends VHCform {
         <div class="preview-area-body">
             <div class="preview-area-client">
                 <label>Client Name</label><input class="${this.dom.values.client}">
+                <label>Status</label><input class="${this.dom.values.status}">
             </div>
             <div class="preview-area-appt">
                 <label>Time Ran</label><select class="${this.dom.values.time}"></select>
                 <label>Company</label><select class="${this.dom.values.comp}"></select>
                 <label>Lead Source</label><select class="${this.dom.values.source}"></select>
+                <label>Lead Generate</label><select class="${this.dom.values.lead}"></select>
                 <label>Preseted Via</label><select class="${this.dom.values.prstvia}"></select>
             </div>
             <div class="preview-area-sale">
@@ -65,7 +64,7 @@ class FilterForm extends VHCform {
                 <label>Category</label><select class="${this.dom.values.cat}"></select>
             </div>
             <div class="preview-area-buttons">
-                <div class="flat-action-button ${this.dom.actions.submit}">Submit</div>
+                <div class="flat-action-button ${this.dom.actions.submit}">Filter</div>
             </div>
         </div>
     </div>
