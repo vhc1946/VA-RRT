@@ -21,6 +21,7 @@ class TrackerForm extends VHCform{
         this.actions.save.title='insert';
       });
       this.actions.save.addEventListener('click',(ele)=>{
+        console.log()
         this.submit(ele.target.title).then(doc=>{if(doc){rfrsh(ele.target.title,doc)}});
       });
       this.actions.remove.addEventListener('click',(ele)=>{
@@ -117,9 +118,9 @@ class TrackerForm extends VHCform{
             </div>
             <div class="preview-area-buttons">
                 <div class="${this.dom.values.estimator}"></div>
-                <div class="sm-action-button ${this.dom.actions.save}" title="insert"><img src="../bin/repo/assets/icons/disk.png"/></div>
-                <div class="sm-action-button ${this.dom.actions.remove}" title="insert"><img src="../bin/repo/assets/icons/trash.png"/></div>
-                <div class="sm-action-button ${this.dom.actions.clear}" title="insert"><img src="../bin/repo/assets/icons/refresh-icon.png"/></div>
+                <div class="sm-action-button"><img class="${this.dom.actions.save}" src="../bin/repo/assets/icons/disk.png"/></div>
+                <div class="sm-action-button"><img class="${this.dom.actions.remove}" src="../bin/repo/assets/icons/trash.png"/></div>
+                <div class="sm-action-button"><img class="${this.dom.actions.clear}" src="../bin/repo/assets/icons/refresh-icon.png"/></div>
             </div>
         </div>
     </div>
@@ -127,7 +128,7 @@ class TrackerForm extends VHCform{
 
     loadform(info={}){
       this.form = info;
-      if(info){this.actions.save.title='update';}
+      if(Object.keys(info).length!=0){this.actions.save.title='update';}
       else{this.actions.save.title='insert';}
     }
 
