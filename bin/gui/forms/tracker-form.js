@@ -1,6 +1,6 @@
 var {VHCform} = require("../../repo/tools/box/vhc-forms.js");
 var {SENDrequestapi}=require('../../repo/apis/vapi/vapicore.js');
-var {DropNote}=require('../../repo/gui/js/modules/vg-poppers.js');
+var {DropNote}=require('../../repo/gui/js/modules/vg-dropnote.js');
 
 var {aqtrack}=require('../../back/quote-tracking.js');
 
@@ -28,12 +28,14 @@ class TrackerForm extends VHCform{
       });
 
       for(let d in droplist){
-        for(let x=0;x<droplist[d].length;x++){
-          var ele = document.createElement('option');
-          ele.value = droplist[d][x];
-          ele.textContent=droplist[d][x];
+        if(this.inputs[d]){
+          for(let x=0;x<droplist[d].length;x++){
+            var ele = document.createElement('option');
+            ele.value = droplist[d][x];
+            ele.textContent=droplist[d][x];
 
-          this.inputs[d].appendChild(ele);
+            this.inputs[d].appendChild(ele);
+          }
         }
       }
     }
@@ -64,7 +66,9 @@ class TrackerForm extends VHCform{
             cat:"preview-value-cat",
             amount:"preview-value-amount",
             estimator:"preview-value-estimator",
-            sold:"preview-value-sold"
+            status:"preview-value-status",
+            sold:"preview-value-sold",
+            closed:"preview-value-closed"
         },
         actions:{
             save:"preview-button-save",
@@ -102,18 +106,20 @@ class TrackerForm extends VHCform{
                 <div class="preview-sales-misc">
                     <label>Financed</label><input class="${this.dom.values.finance}" type="checkbox">
                     <label>Sale Type</label><select class="${this.dom.values.saletype}"></select>
+                    <label>Status</label><select class="${this.dom.values.status}"></select>
                 </div>
                 <div class="preview-sales-main">
                     <label>Category</label><select class="${this.dom.values.cat}"></select>
                     <label>Amount</label><input class="${this.dom.values.amount}">
                     <label>Sold?</label><input class="${this.dom.values.sold}" type="checkbox">
+                    <label>Closed?</label><input class="${this.dom.values.closed}" type="checkbox">
                 </div>
             </div>
             <div class="preview-area-buttons">
                 <div class="${this.dom.values.estimator}"></div>
-                <img src="../bin/repo/assets/icons/disk.png" class="sm-action-button ${this.dom.actions.save}" title="insert"/>
-                <img src="../bin/repo/assets/icons/trash.png" class="sm-action-button ${this.dom.actions.remove}" title="delete"/>
-                <img src="../bin/repo/assets/icons/refresh-icon.png" class="sm-action-button ${this.dom.actions.clear}" title="clear"/>
+                <div class="sm-action-button ${this.dom.actions.save}" title="insert"><img src="../bin/repo/assets/icons/disk.png"/></div>
+                <div class="sm-action-button ${this.dom.actions.remove}" title="insert"><img src="../bin/repo/assets/icons/trash.png"/></div>
+                <div class="sm-action-button ${this.dom.actions.clear}" title="insert"><img src="../bin/repo/assets/icons/refresh-icon.png"/></div>
             </div>
         </div>
     </div>

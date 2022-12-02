@@ -39,6 +39,7 @@ var aqtrack=(qt={})=>{
     prstdate:qt.prstdate||null,
     status:qt.status||'Open',
     sold:qt.sold!=undefined?qt.sold:false,
+    closed:qt.closed!=undefined?qt.closed:false,
     time:qt.time||null
 
   }

@@ -51,17 +51,15 @@ class FilterForm extends VHCform {
             <div class="preview-area-client">
                 <label>Client Name</label><input class="${this.dom.values.client}">
                 <label>Status</label><input class="${this.dom.values.status}">
+                <label>Sale Type</label><select class="${this.dom.values.saletype}"></select>
+                <label>Category</label><select class="${this.dom.values.cat}"></select>
             </div>
             <div class="preview-area-appt">
                 <label>Time Ran</label><select class="${this.dom.values.time}"></select>
                 <label>Company</label><select class="${this.dom.values.comp}"></select>
                 <label>Lead Source</label><select class="${this.dom.values.source}"></select>
-                <label>Lead Generate</label><select class="${this.dom.values.lead}"></select>
+                <label>Lead Generator</label><select class="${this.dom.values.lead}"></select>
                 <label>Preseted Via</label><select class="${this.dom.values.prstvia}"></select>
-            </div>
-            <div class="preview-area-sale">
-                <label>Sale Type</label><select class="${this.dom.values.saletype}"></select>
-                <label>Category</label><select class="${this.dom.values.cat}"></select>
             </div>
             <div class="preview-area-buttons">
                 <div class="flat-action-button ${this.dom.actions.submit}">Filter</div>
