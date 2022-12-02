@@ -37,6 +37,10 @@
     padding: 5px;
     border: 1px solid gray;
 }
+.preview-value-estimator{
+    flex-grow: 1;
+    text-align: center;
+}
 
 /* Analytics View */
 .monthly-ana-table{
