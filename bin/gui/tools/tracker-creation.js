@@ -24,6 +24,7 @@ var tableheaders = {
       client: "CLIENT NAME",
       date: "DATE",
       zip: "ZIP",
+      status: "STATUS",
       saletype: "SALE TYPE",
       amount: "AMOUNT"
 }
@@ -154,7 +155,8 @@ var droplist = {
   comp:[],
   time:[],
   prstvia:[],
-  saletype:[]
+  saletype:[],
+  status:[]
 }
 
 for(let list in droplist){

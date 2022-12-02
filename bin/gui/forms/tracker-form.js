@@ -27,12 +27,14 @@ class TrackerForm extends VHCform{
       });
 
       for(let d in droplist){
-        for(let x=0;x<droplist[d].length;x++){
-          var ele = document.createElement('option');
-          ele.value = droplist[d][x];
-          ele.textContent=droplist[d][x];
+        if(this.inputs[d]){
+          for(let x=0;x<droplist[d].length;x++){
+            var ele = document.createElement('option');
+            ele.value = droplist[d][x];
+            ele.textContent=droplist[d][x];
 
-          this.inputs[d].appendChild(ele);
+            this.inputs[d].appendChild(ele);
+          }
         }
       }
     }
@@ -63,6 +65,7 @@ class TrackerForm extends VHCform{
             cat:"preview-value-cat",
             amount:"preview-value-amount",
             estimator:"preview-value-estimator",
+            status:"preview-value-status",
             sold:"preview-value-sold"
         },
         actions:{
@@ -101,6 +104,7 @@ class TrackerForm extends VHCform{
                 <div class="preview-sales-misc">
                     <label>Financed</label><input class="${this.dom.values.finance}" type="checkbox">
                     <label>Sale Type</label><select class="${this.dom.values.saletype}"></select>
+                    <label>Status</label><select class="${this.dom.values.status}"></select>
                 </div>
                 <div class="preview-sales-main">
                     <label>Category</label><select class="${this.dom.values.cat}"></select>

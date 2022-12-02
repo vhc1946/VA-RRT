@@ -237,6 +237,13 @@
       "Furnace":"Furnace",
       "IAQ":"IAQ",
       "Other":"Other"
+    },
+    "status":{
+      "Open":"",
+      "Won":"green",
+      "Waiting":"yellow",
+      "Financing":"orange",
+      "Lost":"red"
     }
 
   }
