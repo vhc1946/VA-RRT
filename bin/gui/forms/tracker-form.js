@@ -1,6 +1,6 @@
-var { VHCform } = require("../repo/tools/box/vhc-forms.js");
-var {SENDrequestapi}=require('../repo/apis/vapi/vapicore.js');
-var {aqtrack}=require('../quote-tracking.js');
+var {VHCform} = require("../../repo/tools/box/vhc-forms.js");
+var {SENDrequestapi}=require('../../repo/apis/vapi/vapicore.js');
+var {aqtrack}=require('../../back/quote-tracking.js');
 
 class TrackerForm extends VHCform{
     constructor(cont,droplist={}){

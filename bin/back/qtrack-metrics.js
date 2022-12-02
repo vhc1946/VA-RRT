@@ -108,7 +108,7 @@ var GENcommish=(list)=>{
       break;
     }
   }
-  
+
   /*
   console.log('COMMISH ',metrics.commish);
 
@@ -214,7 +214,6 @@ var GENcommish=(list)=>{
 }
 
 module.exports={
-  GENlists,
   GENmetrics,
   GENanalytics,
   GENcommish

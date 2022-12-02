@@ -1,7 +1,7 @@
 var path = require('path');
-var {auser} = require('./appuser.js'); //initialize the app user object
-var apaths = require('../app/paths.json');
-var {NEDBconnect}=require('./repo/tools/box/nedb-connector.js');
+var {auser} = require('../appuser.js'); //initialize the app user object
+var apaths = require('../../app/paths.json');
+var {NEDBconnect}=require('../repo/tools/box/nedb-connector.js');
 
 var rrstore = path.join(auser.cuser.spdrive,apaths.deproot,apaths.store.root);
 var mquotes = path.join(__dirname,'../store/masterquotes.db')//path.join(rrstore,apaths.store.mquotes);
@@ -35,6 +35,7 @@ var aqtrack=(qt={})=>{
 
     prstvia:qt.prstvia||'',
     prstdate:qt.prstdate||null,
+    status:qt.status||'Open',
     sold:qt.sold!=undefined?qt.sold:false,
     time:qt.time||null
 

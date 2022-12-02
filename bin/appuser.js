@@ -4,6 +4,7 @@ var {aappuser} = require('./repo/ds/users/vogel-users.js');
 let locpath = 'C:/IMDB/rrq/';
 let usetfile = 'userset.json';
 var auser = null;
+
 try{
   auser = require(locpath + usetfile);
 }catch{auser = aappuser()}

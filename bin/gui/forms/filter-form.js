@@ -1,24 +1,27 @@
-var { VHCform } = require("../repo/tools/box/vhc-forms.js");
+var {VHCform} = require("../../repo/tools/box/vhc-forms.js");
 
 class FilterForm extends VHCform {
     constructor(cont,droplist={}){
         super(cont);
         this.cont.innerHTML=this.content;
-        
+
         this.setinputs(this.dom.values);  // register input elements
 
+        this.actions.submit = this.cont.getElementsByClassName(this.dom.actions.submit)[0];
+
+        console.log(this.actions);
         for(let d in droplist){
             let ele = document.createElement('option');
             ele.value = " ";
             ele.textContent= " ";
-  
+
             this.inputs[d].appendChild(ele);
 
             for(let x=0;x<droplist[d].length;x++){
               let ele = document.createElement('option');
               ele.value = droplist[d][x];
               ele.textContent=droplist[d][x];
-    
+
               this.inputs[d].appendChild(ele);
             }
         }
@@ -66,6 +69,13 @@ class FilterForm extends VHCform {
         </div>
     </div>
     `
+
+    get filterform(){
+      let form = this.form;
+      let tform = {};
+      for(let f in form){if(form[f]!=''&&form[f]!=' '){tform[f]=form[f]}}
+      return tform;
+    }
 }
 
 module.exports={FilterForm}

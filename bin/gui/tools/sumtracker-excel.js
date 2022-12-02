@@ -45,7 +45,6 @@ var asumtrackerrow = (astr = null) => {
   }
 };
 
-
 var LOADtrackers=(trackerpath,trackerfile)=>{  //Loads excel files
     let templist = [];
     for (let i in appset.users){

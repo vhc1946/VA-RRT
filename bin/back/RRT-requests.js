@@ -1,4 +1,4 @@
-var vapi = require('./repo/apis/vapi/vapicore.js');
+var vapi = require('../repo/apis/vapi/vapicore.js');
 
 var PUTtlist=(tr=[])=>{
   return new Promise((res,rej)=>{

@@ -3,12 +3,13 @@ var {ipcRenderer}=require('electron');
 var RROOT='../bin/repo/';
 var Titlebar = require('../bin/repo/gui/js/modules/vg-titlebar.js');
 var {DropNote}=require('../bin/repo/gui/js/modules/vg-poppers.js');
-var {navroutes}=require('../bin/routes.js');
 var {aappuser} = require('../bin/repo/ds/users/vogel-users.js');
-var {usersls}=require('../bin/gui/storage/lstore.js');
 var vcontrol = require('../bin/repo/gui/js/layouts/view-controller.js');
 
-var sumtracker = require('../bin/gui/sumtracker.js');
+var {navroutes}=require('../bin/routes.js');
+var {usersls}=require('../bin/gui/storage/lstore.js');
+
+var sumtracker = require('../bin/back/qtrack-metrics.js');
 
 
 var molist = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
@@ -145,9 +146,9 @@ var CREATEmotable=(comp,user)=>{  // Creates Monthly Summary Analytics table
     for(let i=1;i<10;i++){  //loops through last nine years to create CarryOver List
         let year = today.getFullYear() - i;
         list=sumtracker.GENlists(list,user,year);
-    }   
+    }
     analytics.CO = sumtracker.GENanalytics(list[comp]);
-    
+
     for(let m in molist){
         list={vhc:[],bee:[],comb:[]};
         list=sumtracker.GENlists(list,user,today.getFullYear()+'-'+monum[m]+'-');
@@ -162,7 +163,7 @@ var CREATEmotable=(comp,user)=>{  // Creates Monthly Summary Analytics table
     for(let y in analytics['CO'].opts){
         row.appendChild(document.createElement('div')).innerText = y.toUpperCase();
     }
-    
+
     for(let key in analytics){  // creates individual rows for each month
         row = cont.appendChild(document.createElement('div'));
         row.classList.add('monthly-ana-row');
@@ -183,7 +184,7 @@ ipcRenderer.on('get-user-tlist', (eve,data)=>{
   console.log('Data list>',data.data);
 
   sumtracker.SETsumtracker(data.data);
-  
+
   CREATEanalytics();
   FILLanalytics(appuser);
 });

@@ -1,17 +1,20 @@
 const $ = require('jquery')
 var {ipcRenderer}=require('electron');
+var appset = require('../app/settings.json');
 
 var RROOT='../bin/repo/';
 var Titlebar = require('../bin/repo/gui/js/modules/vg-titlebar.js');
 var {DropNote}=require('../bin/repo/gui/js/modules/vg-poppers.js');
-var {navroutes}=require('../bin/routes.js');
-var {aappuser} = require('../bin/repo/ds/users/vogel-users.js');
-var {usersls}=require('../bin/gui/storage/lstore.js');
-var creator = require('../bin/gui/tracker-creation.js');
-var appset = require('../app/settings.json');
-var { FINDparentele } = require('../bin/repo/gui/js/tools/vg-displaytools.js');
+var {FINDparentele} = require('../bin/repo/gui/js/tools/vg-displaytools.js');
 var floatv = require('../bin/repo/gui/js/modules/vg-floatviews.js');
-var qtrack = require('../bin/quote-tracking.js');
+var {aappuser} = require('../bin/repo/ds/users/vogel-users.js');
+
+var {navroutes}=require('../bin/routes.js');
+
+var {usersls}=require('../bin/gui/storage/lstore.js');
+var creator = require('../bin/gui/tools/tracker-creation.js');
+
+var qtrack = require('../bin/back/quote-tracking.js');
 
 
 //  TITLE BAR //////////////////////////////////////////////////////////
@@ -34,7 +37,6 @@ let qactions={
     title:'Filter'
   }
 }
-
 let mactions={
   analytics:{
     id:'tracker-analytics',
@@ -55,6 +57,9 @@ let malist=Titlebar.CREATEactionbuttons(mactions);
 Titlebar.ADDqactions(qalist);
 Titlebar.ADDmactions(malist);
 
+///////////////////////////////////////
+
+
 document.getElementById(Titlebar.tbdom.page.user).addEventListener('click',(ele)=>{//GOTO LOGIN
   ipcRenderer.send(navroutes.gotologin,'Opening Login Dash...');
 });
@@ -73,24 +78,15 @@ document.getElementById('tracker-commish').addEventListener('click', (ele)=>{
 
 if(appset.users[appuser].group == "CONS"){
   $(document.getElementById('tracker-commish')).hide();
-}else{
-  $(document.getElementById('tracker-commish')).show();
-}
+}else{$(document.getElementById('tracker-commish')).show();}
 ////////////////////////////////////////////////////////////////////////////////
 
 document.getElementById('tracker-tables').addEventListener('dblclick',(ele)=>{
   let lrow = FINDparentele(ele.target,'tracker-row');
-  if(lrow){
-    creator.EDITtracker(lrow);
-  }
+  if(lrow){creator.EDITtracker(lrow);}
 });
 
-// QUOTE SYNCING //
-
-
-
 //var maintlist = new ObjList;
-
 creator.SETUPuseryear(appset.users[appuser].group!='MAN'?appset.users[appuser].name:undefined).then(
   list=>{
     console.log('User List: ',list);
@@ -102,5 +98,3 @@ creator.SETUPuseryear(appset.users[appuser].group!='MAN'?appset.users[appuser].n
     )
   }
 );
-
-

@@ -1,16 +1,17 @@
 var {ipcRenderer}=require('electron');
 
+var appset = require('../app/settings.json');
 var RROOT='../bin/repo/';
 var Titlebar = require('../bin/repo/gui/js/modules/vg-titlebar.js');
 var {DropNote}=require('../bin/repo/gui/js/modules/vg-poppers.js');
-var {navroutes}=require('../bin/routes.js');
 var {aappuser} = require('../bin/repo/ds/users/vogel-users.js');
-var {usersls}=require('../bin/gui/storage/lstore.js');
 var vcontrol = require('../bin/repo/gui/js/layouts/view-controller.js');
-var appset = require('../app/settings.json');
 
-var sumtracker = require('../bin/gui/sumtracker.js');
-const { GETtlist } = require('../bin/RRT-requests.js');
+var {navroutes}=require('../bin/routes.js');
+var {usersls}=require('../bin/gui/storage/lstore.js');
+
+var sumtracker = require('../bin/back/qtrack-metrics.js');
+const {GETtlist} = require('../bin/back/RRT-requests.js');
 
 //  TITLE BAR //
 try{
@@ -48,13 +49,13 @@ var CREATEcommissions=()=>{
             tempblock = document.createElement('div');
             block = tempblock.appendChild(document.getElementById('commish-table-temp').cloneNode(true));
             block.id = '';
-            
+
             let list={vhc:[],bee:[],comb:[]};
             list = sumtracker.GENlists(list,key);
             let metrics = sumtracker.GENcommish(list.comb);
 
             console.log(metrics);
-            
+
             for(let key in metrics.commish){
               if(key != "other"){
                 for(let bit in metrics.commish[key]){
@@ -74,7 +75,7 @@ var CREATEcommissions=()=>{
             block.getElementsByClassName(`bp-rate`)[0].innerText = (metrics.book.rate * 100) + '%';
             block.getElementsByClassName(`bp-comm`)[0].innerText = metrics.book.comm;
             block.getElementsByClassName(`comm-total`)[0].innerText = metrics.comm;
-            
+
             block.getElementsByClassName(`bee-rev`)[0].innerText = metrics.env;
             block.getElementsByClassName(`bee-rate`)[0].innerText = metrics.beerate;
             block.getElementsByClassName(`bee-commish`)[0].innerText = metrics.beecommish;
