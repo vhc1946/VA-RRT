@@ -16,7 +16,8 @@ class TrackerForm extends VHCform{
       this.actions.remove=this.cont.getElementsByClassName(this.dom.actions.remove)[0];
 
       this.actions.clear.addEventListener('click',(ele)=>{
-        this.form = undefined;
+        this.
+        this.form = {_id:undefined};
         this.actions.save.title='insert';
       });
       this.actions.save.addEventListener('click',(ele)=>{

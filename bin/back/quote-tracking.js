@@ -7,6 +7,7 @@ var {PUTtlist}=require('./RRT-requests.js');
 var rrstore = path.join(auser.cuser.spdrive,apaths.deproot,apaths.store.root);
 var mquotes = path.join(__dirname,'../../store/masterquotes.db')//path.join(rrstore,apaths.store.mquotes);
 
+
 var aqtrack=(qt={})=>{
   if(!qt){qt={};}
   return{
@@ -43,7 +44,7 @@ var aqtrack=(qt={})=>{
   }
 }
 var quotes = new NEDBconnect(mquotes);
-
+quotes.QUERYdb({}).then(res=>{console.log(res)})
 /* Get untracked Quotes
   Gets user quotes and searches to see if there are any quotes not currently being
   tracked. It adds these to an array for the user to view.
