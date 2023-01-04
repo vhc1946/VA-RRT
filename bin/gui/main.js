@@ -51,11 +51,8 @@ let mactions={
 
 }
 
-let qalist=Titlebar.CREATEactionbuttons(qactions);
-let malist=Titlebar.CREATEactionbuttons(mactions);
 
-Titlebar.ADDqactions(qalist);
-Titlebar.ADDmactions(malist);
+Titlebar.SETUPtitlebar(qactions,mactions);
 
 ///////////////////////////////////////
 
