@@ -4,6 +4,9 @@
 #tracker-view-cont{
     height: calc(100vh - 25px - 72px - 72px - 34px);  /* ViewHeight - MenuBar - other elements */
 }
+#tracker-view-cont>.viewcontrol-menu>div{
+    flex-grow: 1;
+}
 
 /* Popup Boxes */
 .popup-header{

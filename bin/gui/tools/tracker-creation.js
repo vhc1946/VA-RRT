@@ -51,11 +51,15 @@ var CREATEviews=(reset=false)=>{ // Creates monthly views via tabbed view
     let moblock = document.getElementById('tracker-view-cont');
 
     if(!reset){
-      vcontrol.SETUPviews(moblock,'mt');
+      var views = new vcontrol.ViewGroup({
+        create:false,
+        cont:moblock,
+        type:'mt'
+      });
 
       let mocont = document.createElement('div');   //creates CarryOver Tab
       mocont.id = 'CO';
-      let v = vcontrol.ADDview('CO',mocont,moblock,false);
+      let v = views.ADDview('CO',mocont,false);
       v.appendChild(document.createElement('div'));
       v.lastChild.classList.add('monthly-metrics');
       v.appendChild(document.createElement('div'));
@@ -63,7 +67,7 @@ var CREATEviews=(reset=false)=>{ // Creates monthly views via tabbed view
       for(let m in molist){   //loops to create Monthly Tabs and adds Lists as Tables
         mocont = document.createElement('div');
         mocont.id = molist[m];
-        v = vcontrol.ADDview(molist[m],mocont,moblock,false);
+        v = views.ADDview(molist[m],mocont,false);
         v.appendChild(document.createElement('div'));
         v.lastChild.classList.add('monthly-metrics');
         v.appendChild(document.createElement('div'));

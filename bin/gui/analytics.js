@@ -29,9 +29,7 @@ let qactions={
   },
 }
 
-let qalist=Titlebar.CREATEactionbuttons(qactions);
-
-Titlebar.ADDqactions(qalist);
+Titlebar.SETUPtitlebar(qactions);
 
 document.getElementById(Titlebar.tbdom.page.user).addEventListener('click',(ele)=>{//GOTO LOGIN
   ipcRenderer.send(navroutes.gotologin,'Opening Login Dash...');
