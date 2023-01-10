@@ -1,10 +1,6 @@
 {
   "deproot":"/Vogel - Res HVAC/",
   "settings":"/IMDB/quoter/settings.json",
-  "pricing":{
-    "book":"/Residential Management/Pricing/Res Pricing Book.xlsm",
-    "key":"pricekey.json"
-  },
   "jobs":{
     "root":"Residential Jobs",
     "folders":{
@@ -19,7 +15,7 @@
   },
   "store":{
     "root":"/IMDB/store/",
-    "mquotes":"masterquotes.db"
+    "mquotes":"quotes/masterquotes.db"
   },
   "assets":{
     "root":"/IMDB/assets/",

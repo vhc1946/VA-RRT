@@ -4,8 +4,9 @@ var apaths = require('../../app/paths.json');
 var {NEDBconnect}=require('../repo/tools/box/nedb-connector.js');
 var {PUTtlist}=require('./RRT-requests.js');
 
+var apppaths = require('../../app/paths.json');
 var rrstore = path.join(auser.cuser.spdrive,apaths.deproot,apaths.store.root);
-var mquotes = path.join(__dirname,'../../store/masterquotes.db')//path.join(rrstore,apaths.store.mquotes);
+var mquotes = path.join(auser.cuser.spdrive,apppaths.deproot,apppaths.store.root,apppaths.store.mquotes)//path.join(rrstore,apaths.store.mquotes);
 
 
 var aqtrack=(qt={})=>{

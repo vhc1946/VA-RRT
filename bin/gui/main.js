@@ -29,24 +29,29 @@ let qactions={
   new:{
     id:'new-lead',
     src:'../bin/repo/assets/icons/add-document.png',
-    title:'New Lead'
+    title:'New Lead',
+    ondblclick:(ele)=>{creator.EDITtracker();}
+
   },
   filter:{
     id:'filter-leads',
     src:'../bin/repo/assets/icons/filter.png',
-    title:'Filter'
+    title:'Filter',
+    ondblclick:(ele)=>{floatv.SELECTview(document.getElementById('preview-center'),'Filter Options');}
   }
 }
 let mactions={
   analytics:{
     id:'tracker-analytics',
     src:'../bin/repo/assets/icons/chart-histogram.png',
-    title:'Analytics View'
+    title:'Analytics View',
+    ondblclick:(ele)=>{ipcRenderer.send('analytics-page', 'Switching to Analytics...');}
   },
   commish:{
     id:'tracker-commish',
     src:'../bin/repo/assets/icons/dollar-thin.png',
-    title:'Commissions View'
+    title:'Commissions View',
+    ondblclick:(ele)=>{ipcRenderer.send('commish-page', 'Switching to Commissions...');}
   },
 
 }
@@ -63,19 +68,6 @@ Titlebar.ADDmactions(malist);
 document.getElementById(Titlebar.tbdom.page.user).addEventListener('click',(ele)=>{//GOTO LOGIN
   ipcRenderer.send(navroutes.gotologin,'Opening Login Dash...');
 });
-document.getElementById(qactions.new.id).addEventListener('dblclick',(ele)=>{
-  creator.EDITtracker();
-});
-document.getElementById(qactions.filter.id).addEventListener('dblclick',(ele)=>{
-  floatv.SELECTview(document.getElementById('preview-center'),'Filter Options'); // open filter box
-});
-document.getElementById('tracker-analytics').addEventListener('click', (ele)=>{
-  ipcRenderer.send('analytics-page', 'Switching to Analytics...');
-});
-document.getElementById('tracker-commish').addEventListener('click', (ele)=>{
-  ipcRenderer.send('commish-page', 'Switching to Commissions...');
-});
-
 if(appset.users[appuser].group == "CONS"){
   $(document.getElementById('tracker-commish')).hide();
 }else{$(document.getElementById('tracker-commish')).show();}
@@ -87,19 +79,21 @@ document.getElementById('tracker-tables').addEventListener('dblclick',(ele)=>{
 });
 
 //var maintlist = new ObjList;
-creator.SETUPuseryear(appset.users[appuser].group!='MAN'?appset.users[appuser].name:undefined).then(
+console.log(appuser)
+creator.SETUPuseryear(appset.users[appuser].group!='MAN'?appuser:undefined).then(
   list=>{
     //check for updates
     console.log(list);
-    qtrack.CHECKquotechanges(list,appset.users[appuser].group!='MAN'?appset.users[appuser].name:undefined).then(
+    qtrack.CHECKquotechanges(list,appset.users[appuser].group!='MAN'?appuser:undefined).then(
       ulist=>{
         //display quotes that
         console.log('CHANGED LIST> ',ulist);
       }
     )
-    qtrack.GETuntrackedquotes(list,appset.users[appuser].group!='MAN'?appset.users[appuser].name:undefined).then(
+    qtrack.GETuntrackedquotes(list,appset.users[appuser].group!='MAN'?appuser:undefined).then(
       ulist=>{
         //display list of quotes to be tracked
+        console.log(ulist);
         qtrack.STARTtrackquotes(ulist).then(
           res=>{
             if(res&&res.err){DropNote('tr','Quotes did not Sync','yellow');console.log(res.err);}

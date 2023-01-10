@@ -16,7 +16,6 @@ class TrackerForm extends VHCform{
       this.actions.remove=this.cont.getElementsByClassName(this.dom.actions.remove)[0];
 
       this.actions.clear.addEventListener('click',(ele)=>{
-        this.
         this.form = {_id:undefined};
         this.actions.save.title='insert';
       });
@@ -131,10 +130,13 @@ class TrackerForm extends VHCform{
       if(Object.keys(info).length!=0){this.actions.save.title='update';}
       else{this.actions.save.title='insert';}
     }
-
+    validate(action='empty'){
+      if(this.form._id==''&&action==='remove'){return false}
+      return true
+    }
     submit(action){
       return new Promise((resolve,reject)=>{
-        if(this.validate()){
+        if(this.validate(action)){
           let opts = null;
           DropNote('tr',`${action}ing item`,'green');
           switch(action){
@@ -192,7 +194,7 @@ class TrackerForm extends VHCform{
               }
             )
           }else{console.log('Bad method for server');return resolve(false);}
-        }else{console.log('Form Inputs are Bad');return resolve(false);}
+        }else{DropNote('tr','Bad Form Inputs','yellow');return resolve(false);}
       })
     }
 }
